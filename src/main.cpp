@@ -107,6 +107,64 @@ int main()
 
         switch (operacion)
         {
+            case 1:{  //CARROS COMPRADOS Y VENDIDOS POR UN CLIENTE
+                int id_cliente, carros_vendidos = 0, carros_comprados = 0; bool estado = false;
+                string marca_carros_vendidos[2000], modelo_carros_vendidos[2000], year_carros_vendidos[2000];
+                string marca_carros_comprados[2000], modelo_carros_comprados[2000], year_carros_comprados[2000];
+
+                //GUARDAMOS INFORMACION DE LOS CARROS VENDIDOS Y COMRPRADOS POR EL CLIENTE
+                styleOutput("italic", "yellow","Ingrese el ID del cliente para mostar informacion de compras y ventas:");id_cliente = styleIputInt("yellow");
+                for(int i = 0; i < numero_clientes; i++){
+                    if(clientes[i].id == id_cliente){
+                        id_cliente = i;
+                        estado = true;
+                    }
+                }
+
+                if(estado == false){
+                     styleOutput("","rojo","""[ERROR]: No existe un cliente con el ID ingresado");
+                     break;
+                }
+
+                for(int i = 0; i < numero_carros; i++){
+                    if(clientes[id_cliente].id == carros[i].id_vendido){
+                        marca_carros_vendidos[i] = carros[i].marca;
+                        modelo_carros_vendidos[i] = carros[i].modelo;
+                        year_carros_vendidos[i] = std::to_string(carros[i].year);
+                        carros_vendidos++;
+                    }
+                    if(clientes[id_cliente].id == carros[i].id_comprado)
+                    {
+                        marca_carros_comprados[i] = carros[i].marca;
+                        modelo_carros_comprados[i] = carros[i].modelo;
+                        year_carros_comprados[i] = std::to_string(carros[i].year);
+                        carros_comprados++;
+                    }
+                }
+
+                //MOSTRAMOS LOS CARROS COMPRADOS Y VENIDOS POR EL CLIENTE
+                styleOutput("bold","","Cliente:");cout<<clientes[id_cliente].id<<" "<<clientes[id_cliente].nombre<<" "<<clientes[id_cliente].apellido<<" "<<clientes[id_cliente].email<<" "<<clientes[id_cliente].edad<<endl<<endl;
+                styleOutput("bold","","Carros vendidos:");cout<<carros_vendidos<<endl<<endl;
+                for(int i = 0; i < numero_carros; i++){
+                    if(clientes[id_cliente].id == carros[i].id_vendido)
+                    {
+                        styleOutput("bold","","Marca:");cout<<marca_carros_vendidos[i]<<endl;
+                        styleOutput("bold","","Modelo:");cout<<modelo_carros_vendidos[i]<<endl;
+                        styleOutput("bold","","""year:");cout<<year_carros_vendidos[i]<<endl<<endl;
+                    }
+                }
+
+                styleOutput("bold","","Carros comprados:");cout<<carros_comprados<<endl<<endl;
+                for(int i = 0; i < numero_carros; i++){
+                    if(clientes[id_cliente].id == carros[i].id_comprado){
+                    styleOutput("bold","","Marca:");cout<<marca_carros_comprados[i]<<endl;
+                    styleOutput("bold","","Modelo:");cout<<modelo_carros_comprados[i]<<endl;
+                    styleOutput("bold","","Año:");cout<<year_carros_comprados[i]<<endl<<endl;
+                    }
+                }
+            break;    
+            }
+
             default:{ //OPCION POR DEFECTO
                 string decision;
                 styleOutput("bold","red","[ERROR] Has ingresado una operacion invalida.");cout<<endl;
