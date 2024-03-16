@@ -165,6 +165,55 @@ int main()
             break;    
             }
 
+            case 3:{ //AGREGAR DATOS DE UN CLIENTE
+                Clientes agregar;
+                agregar.id = (numero_clientes);
+                styleOutput("bold","","Ingrese los datos del cliente:");cout<<endl<<endl;
+                styleOutput("italic","yellow","Nombre:");cin>>agregar.nombre;
+                styleOutput("italic","yellow","Apellido:");cin>>agregar.apellido;
+                styleOutput("italic","yellow","E-mail:");cin>>agregar.email;
+                styleOutput("italic","yellow","Edad:");cin>>agregar.edad;cout<<endl;
+
+                //DETECTOR DE CLIENTE REPETIDO
+                int x;
+                for (int i = 0; i < numero_clientes; i++)
+                {
+                    if (agregar.nombre == clientes[i].nombre)
+                    {
+                        for (int j = 0; j < numero_clientes; j++)
+                        {
+                            if (agregar.apellido == clientes[j].apellido)
+                            {
+                                styleOutput("bold","red","[Error] El cliente ya se encuentra en la base de datos.");cout<<endl<<endl;
+                                return 1;
+                            }
+                        }
+                    }
+                    x += 1;         
+                }
+
+                if (x == numero_clientes)
+                {
+                    //ARCHIVO DE SALIDA
+                    ofstream salida;
+                    salida.open("../assets/clients.txt", ios::app);
+
+                    //GUARDAMOS DATOS DEL CLIENTE
+                    numero_clientes += 1;
+                    clientes[numero_clientes].id = agregar.id;
+                    clientes[numero_clientes].nombre = agregar.nombre;
+                    clientes[numero_clientes].apellido = agregar.apellido;
+                    clientes[numero_clientes].email = agregar.email;
+                    clientes[numero_clientes].edad = agregar.edad;
+
+                    salida<<clientes[numero_clientes].id<<";"<<clientes[numero_clientes].nombre<<";"<<clientes[numero_clientes].apellido<<";"<<clientes[numero_clientes].email<<";"<<clientes[numero_clientes].edad<<endl;
+                    styleOutput("bold","green","Datos del cliente se guardaron exitosamente!");cout<<endl<<endl;
+
+                }
+                reiniciar = false;   
+                break; 
+            }
+
             default:{ //OPCION POR DEFECTO
                 string decision;
                 styleOutput("bold","red","[ERROR] Has ingresado una operacion invalida.");cout<<endl;
