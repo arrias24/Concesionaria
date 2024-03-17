@@ -123,6 +123,7 @@ int main()
 
                 if(estado == false){
                      styleOutput("","rojo","""[ERROR]: No existe un cliente con el ID ingresado");
+                     reiniciar = false;
                      break;
                 }
 
@@ -162,7 +163,43 @@ int main()
                     styleOutput("bold","","Año:");cout<<year_carros_comprados[i]<<endl<<endl;
                     }
                 }
+            reiniciar = false;    
             break;    
+            }
+
+            case 2:{ //HISTORIAL DE COMPRA Y VENTA DE UN CARRO
+                int id_carro; bool estado = false;
+                styleOutput("italic", "yellow","Ingresa el 'ID' del carro para buscar su informacion:");id_carro = styleIputInt("yellow");
+
+                for(int i = 0; i < numero_carros; i++){
+                    if(carros[i].id == id_carro){
+                        id_carro = i;
+                        estado = true;
+                        }
+                    }
+
+                if(estado == false){
+                     styleOutput("","rojo","""[ERROR]: No existe un carro con el ID ingresado");
+                    reiniciar = false;
+                     return 1;
+                }    
+
+                //BUSCAMOS EL CARRO POR SU ID Y LUEGO COMPARAMOS A SU COMPRADOR Y VENDEDOR
+                for(int i = 0; i < numero_clientes; i++){
+                    if(carros[id_carro].id_comprado == clientes[i].id){
+                        styleOutput("bold","","Marca:");cout<<carros[id_carro].marca<<endl;
+                        styleOutput("bold","","Modelo:");cout<<carros[id_carro].modelo<<endl;
+                        styleOutput("bold","","Año:");cout<<carros[id_carro].year<<endl<<endl;
+                        styleOutput("bold","","Comprado a:");cout<<clientes[i].id<<" "<<clientes[i].nombre<<" "<<clientes[i].apellido<<" "<<clientes[i].email<<" "<<clientes[i].edad<<endl<<endl;
+                    }         
+                }
+                for(int i = 0; i < numero_clientes; i++){
+                    if(carros[id_carro].id_vendido == clientes[i].id){
+                        styleOutput("bold","","Vendido a:");cout<<clientes[i].id<<" "<<clientes[i].nombre<<" "<<clientes[i].apellido<<" "<<clientes[i].email<<" "<<clientes[i].edad<<endl<<endl;
+                    }       
+                }
+                reiniciar = false;
+                break;
             }
 
             case 3:{ //AGREGAR DATOS DE UN CLIENTE
