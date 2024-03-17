@@ -319,6 +319,88 @@ int main()
                 break;
             }
 
+            case 5:{ //MODIFICAR DATOS DE UN CARRO
+                int id_modificar;
+                Carros modificar;
+                styleOutput("italic","yellow","Ingresa el 'ID' del carro para modificar sus datos:");id_modificar = styleIputInt("yellow");
+
+                //BUSCAMOS EL CARRO POR SU ID
+                bool carroExiste = false;
+                for (size_t i = 0; i < numero_carros; i++)
+                {
+                    if(carros[i].id == id_modificar)
+                    {
+                        carroExiste = true;
+                        break;
+                    }
+                }
+
+                if (carroExiste)
+                {
+                    styleOutput("italic","yellow","ID del nuevo vendedor:");cin>>modificar.id_vendido;
+                    styleOutput("italic","yellow","ID del nuevo comprador:");cin>>modificar.id_comprado;
+                    styleOutput("italic","yellow","Precio de venta:");cin>>modificar.precio_vendido;
+                    styleOutput("italic","yellow","Precio de compra:");cin>>modificar.precio_comprado;cout<<endl;
+
+                    //ARCHIVO DE SALIDA
+                    ofstream salida;
+
+                    //GUARDAMOS DATOS DEL CARRO
+                    carros[id_modificar].id_vendido = modificar.id_vendido;
+                    carros[id_modificar].id_comprado = modificar.id_comprado;
+                    carros[id_modificar].precio_vendido = modificar.precio_vendido;
+                    carros[id_modificar].precio_comprado = modificar.precio_comprado;
+
+                    //DETECTOR DE CLIENTE AUSENTE
+                    if (modificar.id_vendido > numero_clientes) 
+                    {
+                        styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del vendedor seleccionado.");cout<<endl<<endl;
+                        return 1;
+                    }else if (modificar.id_comprado > numero_clientes) {
+                        styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del comprador seleccionado.");cout<<endl<<endl;
+                        return 1;
+                    }
+
+                    bool flag = false;
+                    for (int i = 0; i < numero_clientes; i++)
+                    {
+                        if (clientes[i].id == modificar.id_vendido)
+                        {
+                            flag = true;
+                        }
+                    }if (flag == false) {
+                        styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del vendedor seleccionado.");cout<<endl<<endl;
+                        return 1;
+                    }for (int i = 0; i < numero_clientes; i++)
+                    {
+                        if (clientes[i].id == modificar.id_comprado)
+                        {
+                            flag = true;
+                        }
+                    }if (flag ==  false){
+                        styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del comprador seleccionado.");cout<<endl<<endl;
+                        return 1;
+                    }
+
+                    //GUARDAMOS DATOS DE EL ARCHIVO
+                    salida.open("../assets/cars.txt");
+                    salida<<encabezado_clientes<<endl;
+                    for (int i = 1; i < numero_carros; i++)
+                    {
+                        salida<<carros[i].id<<";"<<carros[i].marca<<";"<<carros[i].modelo<<";"<<carros[i].year<<";"<<carros[i].id_vendido<<";"<<carros[i].id_comprado<<";"<<carros[i].precio_vendido<<";"<<carros[i].precio_comprado<<endl;
+                    }
+                    styleOutput("bold","green","Datos del carro se modificaron exitosamente!");cout<<endl<<endl;
+                }
+                else
+                {
+                    styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del carro seleccionado.");
+                    cout<<endl<<endl;
+                    return 1;
+                }
+                reiniciar = false;
+                break;
+            }
+
             default:{ //OPCION POR DEFECTO
                 string decision;
                 styleOutput("bold","red","[ERROR] Has ingresado una operacion invalida.");cout<<endl;
