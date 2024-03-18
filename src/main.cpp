@@ -30,7 +30,7 @@ int main()
     //ABRIMOS ARCHIVOS Y LEEMOS
 
     ifstream archivo_clientes, archivo_carros;
-    archivo_clientes.open("../assets/clients.txt");archivo_carros.open("../assets/cars.txt");
+    archivo_clientes.open("../assets/clients.csv");archivo_carros.open("../assets/cars.csv");
     if(!archivo_clientes.is_open() || !archivo_carros.is_open())
     {
         cout<<endl;styleOutput("bold","red","[ERROR] No se ha podido abrir el archivo correctamente.");cout<<endl;
@@ -233,7 +233,7 @@ int main()
                 {
                     //ARCHIVO DE SALIDA
                     ofstream salida;
-                    salida.open("../assets/clients.txt", ios::app);
+                    salida.open("../assets/clients.csv", ios::app);
 
                     //GUARDAMOS DATOS DEL CLIENTE
                     numero_clientes += 1;
@@ -300,7 +300,7 @@ int main()
                 {
                     //ARCHIVO DE SALIDA
                     ofstream salida;
-                    salida.open("../assets/cars.txt", ios::app);
+                    salida.open("../assets/cars.csv", ios::app);
 
                     numero_carros += 1;
                     carros[numero_carros].id = agregar.id;
@@ -383,7 +383,7 @@ int main()
                     }
 
                     //GUARDAMOS DATOS DE EL ARCHIVO
-                    salida.open("../assets/cars.txt");
+                    salida.open("../assets/cars.csv");
                     salida<<encabezado_clientes<<endl;
                     for (int i = 1; i < numero_carros; i++)
                     {
