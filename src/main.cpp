@@ -402,27 +402,12 @@ int main()
             }
 
             case 6:{ //BORRAR DATOS DE UN CLIENTE
-                int id_borrar; bool estado = false;
+                int id_borrar;
                 styleOutput("italic","yellow","Ingresa el 'ID' del cliente para borrar sus datos:"); id_borrar = styleIputInt("yellow");
 
                 //ARCHIVO DE SALIDA
                 ofstream salida;
                 salida.open("../assets/clients.csv");
-
-                //COMPROBAMOS SI SE ENCUENTRA EL CLIENTE
-
-                for(int i = 0; i < numero_clientes; i++){
-                    if(clientes[i].id == id_borrar){
-                        id_borrar = i;
-                        estado = true;
-                    }
-                }
-
-                if(estado == false){
-                     styleOutput("","rojo","""[ERROR]: No existe un cliente con el ID ingresado");
-                     reiniciar = false;
-                     break;
-                }
 
                 //GUARDAMOS DATOS DE LOS CLIENTES EXCEPTO DE QUIEN SE HA DE ELIMINAR
                 salida<<encabezado_clientes<<endl;
