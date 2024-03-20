@@ -403,27 +403,12 @@ int main()
             }
 
             case 6:{ //BORRAR DATOS DE UN CLIENTE
-                int id_borrar; bool estado = false;
+                int id_borrar;
                 styleOutput("italic","yellow","Ingresa el 'ID' del cliente para borrar sus datos:"); id_borrar = styleIputInt("yellow");
 
                 //ARCHIVO DE SALIDA
                 ofstream salida;
                 salida.open("../assets/clients.csv");
-
-                //COMPROBAMOS SI SE ENCUENTRA EL CLIENTE
-
-                for(int i = 0; i < numero_clientes; i++){
-                    if(clientes[i].id == id_borrar){
-                        id_borrar = i;
-                        estado = true;
-                    }
-                }
-
-                if(estado == false){
-                     styleOutput("","rojo","""[ERROR]: No existe un cliente con el ID ingresado");
-                     reiniciar = false;
-                     break;
-                }
 
                 //GUARDAMOS DATOS DE LOS CLIENTES EXCEPTO DE QUIEN SE HA DE ELIMINAR
                 salida<<encabezado_clientes<<endl;
@@ -438,6 +423,31 @@ int main()
                 styleOutput("bold","green","Datos del cliente borrado exitosamente!");cout<<endl<<endl;
                 reiniciar = false;
                 break;
+            }
+
+            case 7:{ //BORRAR DATOS DE UN CARROS
+                int id_borrar;
+                styleOutput("italic","yellow","Ingresa el 'ID' del carro para borrar sus datos:"); id_borrar = styleIputInt("yellow");
+
+                //ARCHIVO DE SALIDA
+                ofstream salida;
+                salida.open("../assets/cars.csv");
+
+                //GUARDAMOS DATOS DE LOS CARROS EXCEPTO DEL CUAL SE HA DE ELIMINAR
+                salida<<encabezado_carros<<endl;
+                for(int i = 0; i < numero_carros; i++)
+                    {
+                        if(carros[i].id != id_borrar)
+                        {
+                            salida<<carros[i].id<<";"<<carros[i].marca<<";"<<carros[i].modelo<<";"<<carros[i].year<<";"<<carros[i].id_vendido<<";"<<carros[i].id_comprado<<";"<<carros[i].precio_vendido<<";"<<carros[i].precio_comprado<<endl;
+                        }
+                    }
+
+                //CERRAMOS ARCHIVO
+                salida.close();
+                styleOutput("bold","green","Datos del carro borrado exitosamente!");cout<<endl<<endl;
+                reiniciar = false;
+                break;    
             }
 
             case 8:{ //GANANCIAS DE COMPRA Y VENTA DE UN CARRO
