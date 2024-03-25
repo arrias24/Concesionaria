@@ -206,7 +206,7 @@ int main()
 
             case 3:{ //AGREGAR DATOS DE UN CLIENTE
                 Clientes agregar;
-                agregar.id = (numero_clientes);
+                agregar.id = (numero_clientes + 1);
                 styleOutput("bold","","Ingrese los datos del cliente:");cout<<endl<<endl;
                 styleOutput("italic","yellow","Nombre:");cin>>agregar.nombre;
                 styleOutput("italic","yellow","Apellido:");cin>>agregar.apellido;
@@ -255,7 +255,7 @@ int main()
 
             case 4:{ //AGREGAR DATOS DE UN CARRO
                 Carros agregar;
-                agregar.id = (numero_carros);
+                agregar.id = (numero_carros + 1);
 
                 styleOutput("bold","","Ingrese los datos del carro:");cout<<endl<<endl;
                 styleOutput("italic","yellow","Marca:");cin.ignore();getline(cin, agregar.marca);
