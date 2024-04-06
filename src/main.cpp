@@ -4,14 +4,21 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+
 //PROTOTIPOS
 #include "./modelo/clases.h"
 #include "./modelo/estructuras.h"
+#include "./modelo/binarySearch.h"
+
 //IMPLEMENTACIONES
-#include "./controlador/manipularArchivos.cpp"
 #include "./controlador/estilos.cpp"
-#include "./controlador/guardadoDatos.cpp"
+#include "./controlador/manipularArchivos.cpp"
+#include "./controlador/guardarDatos.cpp"
+#include "./controlador/manipularDatos.cpp"
+#include "./controlador/binarySearch.cpp"
+#include "./controlador/operaciones.cpp"
 #include "./vista/menu.cpp"
+
 using namespace std;
 
 int main()
@@ -40,97 +47,24 @@ int main()
         switch (operacion)
         {
             case 1:{  //CARROS COMPRADOS Y VENDIDOS POR UN CLIENTE
-                int id_cliente, carros_vendidos = 0, carros_comprados = 0; bool estado = false;
-                string marca_carros_vendidos[2000], modelo_carros_vendidos[2000], year_carros_vendidos[2000];
-                string marca_carros_comprados[2000], modelo_carros_comprados[2000], year_carros_comprados[2000];
 
-                //GUARDAMOS INFORMACION DE LOS CARROS VENDIDOS Y COMRPRADOS POR EL CLIENTE
-                styleOutput("italic", "yellow","Ingrese el ID del cliente para mostar informacion de compras y ventas:");id_cliente = styleIputInt("yellow");
-                for(int i = 0; i < numero_clientes; i++){
-                    if(clientes[i].id == id_cliente){
-                        id_cliente = i;
-                        estado = true;
-                    }
-                }
+                //LLAMAMOS A LA FUNCION
 
-                if(estado == false){
-                     styleOutput("","rojo","""[ERROR]: No existe un cliente con el ID ingresado");
-                     reiniciar = false;
-                     break;
-                }
+                mostrarHistorialCliente(numero_clientes, numero_carros, clientes, carros, reiniciar);
 
-                for(int i = 0; i < numero_carros; i++){
-                    if(clientes[id_cliente].id == carros[i].id_vendido){
-                        marca_carros_vendidos[i] = carros[i].marca;
-                        modelo_carros_vendidos[i] = carros[i].modelo;
-                        year_carros_vendidos[i] = std::to_string(carros[i].year);
-                        carros_vendidos++;
-                    }
-                    if(clientes[id_cliente].id == carros[i].id_comprado)
-                    {
-                        marca_carros_comprados[i] = carros[i].marca;
-                        modelo_carros_comprados[i] = carros[i].modelo;
-                        year_carros_comprados[i] = std::to_string(carros[i].year);
-                        carros_comprados++;
-                    }
-                }
+                //FIN
 
-                //MOSTRAMOS LOS CARROS COMPRADOS Y VENIDOS POR EL CLIENTE
-                styleOutput("bold","","Cliente:");cout<<clientes[id_cliente].id<<" "<<clientes[id_cliente].nombre<<" "<<clientes[id_cliente].apellido<<" "<<clientes[id_cliente].email<<" "<<clientes[id_cliente].edad<<endl<<endl;
-                styleOutput("bold","","Carros vendidos:");cout<<carros_vendidos<<endl<<endl;
-                for(int i = 0; i < numero_carros; i++){
-                    if(clientes[id_cliente].id == carros[i].id_vendido)
-                    {
-                        styleOutput("bold","","Marca:");cout<<marca_carros_vendidos[i]<<endl;
-                        styleOutput("bold","","Modelo:");cout<<modelo_carros_vendidos[i]<<endl;
-                        styleOutput("bold","","""year:");cout<<year_carros_vendidos[i]<<endl<<endl;
-                    }
-                }
-
-                styleOutput("bold","","Carros comprados:");cout<<carros_comprados<<endl<<endl;
-                for(int i = 0; i < numero_carros; i++){
-                    if(clientes[id_cliente].id == carros[i].id_comprado){
-                    styleOutput("bold","","Marca:");cout<<marca_carros_comprados[i]<<endl;
-                    styleOutput("bold","","Modelo:");cout<<modelo_carros_comprados[i]<<endl;
-                    styleOutput("bold","","Año:");cout<<year_carros_comprados[i]<<endl<<endl;
-                    }
-                }
-            reiniciar = false;    
-            break;    
+                break;    
             }
 
             case 2:{ //HISTORIAL DE COMPRA Y VENTA DE UN CARRO
-                int id_carro; bool estado = false;
-                styleOutput("italic", "yellow","Ingresa el 'ID' del carro para buscar su informacion:");id_carro = styleIputInt("yellow");
 
-                for(int i = 0; i < numero_carros; i++){
-                    if(carros[i].id == id_carro){
-                        id_carro = i;
-                        estado = true;
-                        }
-                    }
+                //LLAMAMOS A LA FUNCION
 
-                if(estado == false){
-                     styleOutput("","rojo","""[ERROR]: No existe un carro con el ID ingresado");
-                    reiniciar = false;
-                     return 1;
-                }    
+                mostrarHistorialCarro(numero_clientes, numero_carros, clientes, carros, reiniciar);
 
-                //BUSCAMOS EL CARRO POR SU ID Y LUEGO COMPARAMOS A SU COMPRADOR Y VENDEDOR
-                for(int i = 0; i < numero_clientes; i++){
-                    if(carros[id_carro].id_comprado == clientes[i].id){
-                        styleOutput("bold","","Marca:");cout<<carros[id_carro].marca<<endl;
-                        styleOutput("bold","","Modelo:");cout<<carros[id_carro].modelo<<endl;
-                        styleOutput("bold","","Año:");cout<<carros[id_carro].year<<endl<<endl;
-                        styleOutput("bold","","Comprado a:");cout<<clientes[i].id<<" "<<clientes[i].nombre<<" "<<clientes[i].apellido<<" "<<clientes[i].email<<" "<<clientes[i].edad<<endl<<endl;
-                    }         
-                }
-                for(int i = 0; i < numero_clientes; i++){
-                    if(carros[id_carro].id_vendido == clientes[i].id){
-                        styleOutput("bold","","Vendido a:");cout<<clientes[i].id<<" "<<clientes[i].nombre<<" "<<clientes[i].apellido<<" "<<clientes[i].email<<" "<<clientes[i].edad<<endl<<endl;
-                    }       
-                }
-                reiniciar = false;
+                //FIN
+
                 break;
             }
 
@@ -475,15 +409,10 @@ int main()
             }
 
             default:{ //OPCION POR DEFECTO
-                string decision;
-                styleOutput("bold","red","[ERROR] Has ingresado una operacion invalida.");cout<<endl;
-                styleOutput("italic","yellow","Deseas volver a intentarlo? (s/n):");decision = styleIputChar("yellow");
-                lowercase(decision);
+                
+                //LLAMAMOS A LA FUNCION
 
-                if(decision == "n"){
-                    reiniciar = false;
-                    break;
-                }
+                mostrarMenuError(reiniciar);
             }
         }
     }

@@ -16,7 +16,7 @@ class Usuarios {
             cout<<"- Id: "<<id<<endl;
             cout<<"- Nombre: "<<nombre<<endl;
             cout<<"- Apellido: "<<apellido<<endl;
-            cout<<"- Email"<<email<<endl;
+            cout<<"- Email: "<<email<<endl;
             cout<<"- Edad: "<<edad<<endl;
         }
 
