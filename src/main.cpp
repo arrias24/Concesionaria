@@ -6,21 +6,18 @@
 #include <iomanip>
 //PROTOTIPOS
 #include "./modelo/clases.h"
+#include "./modelo/estructuras.h"
 //IMPLEMENTACIONES
+#include "./controlador/manipularArchivos.cpp"
 #include "./controlador/estilos.cpp"
 using namespace std;
 
 int main()
 {
-    //ABRIMOS ARCHIVOS Y LEEMOS
+    //CREAMOS VARIABLE DE ARCHIVOS, ABRIMOS ARCHIVOS Y LEEMOS
 
     ifstream archivo_clientes, archivo_carros;
-    archivo_clientes.open("../assets/clients.csv");archivo_carros.open("../assets/cars.csv");
-    if(!archivo_clientes.is_open() || !archivo_carros.is_open())
-    {
-        cout<<endl;styleOutput("bold","red","[ERROR] No se ha podido abrir el archivo correctamente.");cout<<endl;
-        return 0;
-    }
+    abrirArchivoClientes(archivo_clientes, "../assets/clients.csv"); abrirArchivoCarros(archivo_carros, "../assets/cars.csv");
 
     //GUARDAMOS DATOS DE CLIENTES Y CARROS EN SUS ESTRUCTURAS
 

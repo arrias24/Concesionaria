@@ -1,12 +1,7 @@
 #include <iostream>
 #include <string>
+#include "../modelo/estructuras.h"
 using namespace std;
-
-struct styleText
-{
-    string inicio;
-    string cierre;
-};
 
 styleText colores[10]; styleText estilos[5];
 
@@ -301,4 +296,4 @@ void lowercase(string &variable)
     {
         variable[i] = tolower(variable[i]);
     }
-}
+}   
