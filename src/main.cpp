@@ -10,6 +10,7 @@
 //IMPLEMENTACIONES
 #include "./controlador/manipularArchivos.cpp"
 #include "./controlador/estilos.cpp"
+#include "./controlador/guardadoDatos.cpp"
 using namespace std;
 
 int main()
@@ -19,56 +20,13 @@ int main()
     ifstream archivo_clientes, archivo_carros;
     abrirArchivoClientes(archivo_clientes, "../assets/clients.csv"); abrirArchivoCarros(archivo_carros, "../assets/cars.csv");
 
-    //GUARDAMOS DATOS DE CLIENTES Y CARROS EN SUS ESTRUCTURAS
-
-    string encabezado_clientes, encabezado_carros;
-    getline(archivo_clientes, encabezado_clientes,'\n'); getline(archivo_carros, encabezado_carros,'\n');
-
+    //CREAMOS VARIABLES, GUARDAMOS DATOS DE CLIENTES Y CARROS EN OBJETOS
+    
     Usuarios clientes[2000]; Autos carros[2000];
-
-    string linea; int numero_clientes = 0, numero_carros = 0;
-
-    while(getline(archivo_clientes, linea, '\n')){
-        stringstream stream(linea);
-        string dato;
-        getline(stream, dato, ';');
-        clientes[numero_clientes].id = std::stoi(dato);
-        getline(stream,dato,';');
-        clientes[numero_clientes].nombre = dato;
-        getline(stream,dato,';');
-        clientes[numero_clientes].apellido = dato;
-        getline(stream,dato,';');
-        clientes[numero_clientes].email = dato;
-        getline(stream,dato,' ');
-        clientes[numero_clientes].edad = std::stoi(dato);
-        numero_clientes++;
-    }
-
-    archivo_clientes.close();
-
-    while(getline(archivo_carros, linea, '\n')){
-        stringstream stream(linea);
-        string dato;
-        getline(stream, dato, ';');
-        carros[numero_carros].id = std::stoi(dato);
-        getline(stream,dato,';');
-        carros[numero_carros].marca = dato;
-        getline(stream,dato,';');
-        carros[numero_carros].modelo = dato;
-        getline(stream,dato,';');
-        carros[numero_carros].year = std::stoi(dato);
-        getline(stream,dato,';');
-        carros[numero_carros].id_vendido = std::stoi(dato);
-        getline(stream,dato,';');
-        carros[numero_carros].id_comprado = std::stoi(dato);
-        getline(stream,dato,';');
-        carros[numero_carros].precio_vendido = std::stof(dato);
-        getline(stream,dato,'\n');
-        carros[numero_carros].precio_comprado = std::stof(dato);            
-        numero_carros++;
-    }
-
-    archivo_carros.close();
+    int numero_clientes = 0, numero_carros = 0;
+    string encabezado_clientes, encabezado_carros;
+ 
+    guardarDatos(archivo_clientes, archivo_carros, encabezado_clientes, encabezado_carros,clientes, carros,  numero_clientes,  numero_carros);
 
     //MOSTRAMOS OPERACIONES 
 
