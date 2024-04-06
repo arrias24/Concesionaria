@@ -5,13 +5,13 @@ using namespace std;
 class Usuarios {
 
     public:
+    //MIEMBROS
         int id;
         string nombre;
         string apellido;
         string email;
         int edad;
-        
-
+    //METODOS
         void mostrarDatos(int id, string nombre, string apellido, string email, int edad){
             cout<<"- Id: "<<id<<endl;
             cout<<"- Nombre: "<<nombre<<endl;
@@ -25,6 +25,7 @@ class Usuarios {
 class Autos{
 
     public:
+    //MIEMBROS
         int id;
         string marca;
         string modelo;
@@ -33,7 +34,7 @@ class Autos{
         int id_comprado;
         float precio_vendido;
         float precio_comprado;
-
+    //METODOS
         void mostrarDatos(int id, string marca, string modelo, int year, int id_vendido, int id_comprado, float precio_vendido, float precio_comprado){
             cout<<"- Id: "<<id<<endl;
             cout<<"- Marca: "<<marca<<endl;

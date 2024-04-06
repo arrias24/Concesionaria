@@ -11,6 +11,7 @@
 #include "./controlador/manipularArchivos.cpp"
 #include "./controlador/estilos.cpp"
 #include "./controlador/guardadoDatos.cpp"
+#include "./vista/menu.cpp"
 using namespace std;
 
 int main()
@@ -28,23 +29,13 @@ int main()
  
     guardarDatos(archivo_clientes, archivo_carros, encabezado_clientes, encabezado_carros,clientes, carros,  numero_clientes,  numero_carros);
 
-    //MOSTRAMOS OPERACIONES 
 
     bool reiniciar = true;
     while( reiniciar == true)
     {
-        int operacion;cout<<endl;
-        styleOutput("bold","","                    //// CONCESIONARIA ////                    ");cout<<endl<<endl;
-        cout<<"1) ";styleOutput("subrayado","","Mostrar carros comprados y vendidos de un cliente.");cout<<endl;
-        cout<<"2) ";styleOutput("subrayado","","Mostrar datos de un vendedor o comprador de un carro.");cout<<endl;
-        cout<<"3) ";styleOutput("subrayado","","Agregar datos de un cliente.");cout<<endl;
-        cout<<"4) ";styleOutput("subrayado","","Agregar datos de un carro.");cout<<endl;
-        cout<<"5) ";styleOutput("subrayado","","Modificar datos de un carro.");cout<<endl;
-        cout<<"6) ";styleOutput("subrayado","","Eliminar datos de un cliente.");cout<<endl;
-        cout<<"7) ";styleOutput("subrayado","","Eliminar datos de un carro.");cout<<endl;
-        cout<<"8) ";styleOutput("subrayado","","Mostrar ganancias o perdidas en la compra y venta de un carro.");cout<<endl;
-        cout<<"9) ";styleOutput("subrayado","","Estado global de la concensionaria.");cout<<endl<<endl;
-        styleOutput("italic","yellow","[OPERACION] -->"); operacion = styleIputInt("yellow");
+        //MOSTRAMOS OPERACIONES 
+        
+        int operacion = mostrarMenu(operacion);
 
         switch (operacion)
         {
