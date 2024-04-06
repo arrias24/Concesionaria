@@ -1,30 +1,14 @@
+//GLOBALES
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+//PROTOTIPOS
+#include "./modelo/clases.h"
+//IMPLEMENTACIONES
 #include "./controlador/estilos.cpp"
 using namespace std;
-
-//ESTRUCTURAS
-struct Clientes {
-    int id;
-    string nombre;
-    string apellido;
-    string email;
-    int edad;
-};
-
-struct Carros{
-    int id;
-    string marca;
-    string modelo;
-    int year;
-    int id_vendido;
-    int id_comprado;
-    float precio_vendido;
-    float precio_comprado;
-};
 
 int main()
 {
@@ -43,7 +27,7 @@ int main()
     string encabezado_clientes, encabezado_carros;
     getline(archivo_clientes, encabezado_clientes,'\n'); getline(archivo_carros, encabezado_carros,'\n');
 
-    Clientes clientes[2000]; Carros carros[2000];
+    Usuarios clientes[2000]; Autos carros[2000];
 
     string linea; int numero_clientes = 0, numero_carros = 0;
 
@@ -205,7 +189,7 @@ int main()
             }
 
             case 3:{ //AGREGAR DATOS DE UN CLIENTE
-                Clientes agregar;
+                Usuarios agregar;
                 agregar.id = (numero_clientes + 1);
                 styleOutput("bold","","Ingrese los datos del cliente:");cout<<endl<<endl;
                 styleOutput("italic","yellow","Nombre:");cin>>agregar.nombre;
@@ -254,7 +238,7 @@ int main()
             }
 
             case 4:{ //AGREGAR DATOS DE UN CARRO
-                Carros agregar;
+                Autos agregar;
                 agregar.id = (numero_carros + 1);
 
                 styleOutput("bold","","Ingrese los datos del carro:");cout<<endl<<endl;
@@ -323,7 +307,7 @@ int main()
 
             case 5:{ //MODIFICAR DATOS DE UN CARRO
                 int id_modificar;
-                Carros modificar;
+                Autos modificar;
                 styleOutput("italic","yellow","Ingresa el 'ID' del carro para modificar sus datos:");id_modificar = styleIputInt("yellow");
 
                 //BUSCAMOS EL CARRO POR SU ID
