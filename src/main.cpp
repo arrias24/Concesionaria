@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include "./vista/style.cpp"
+#include "./controlador/estilos.cpp"
 using namespace std;
 
 //ESTRUCTURAS
