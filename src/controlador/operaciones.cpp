@@ -160,3 +160,52 @@ void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos carros[], 
         reiniciar = false;
     }
 }
+
+//CASO 5 - MODIFICAR DATOS DE UN CARRO
+
+void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos carros[], Usuarios clientes[], string encabezado_clientes, bool& reiniciar)
+{
+    //VARIABLES A UTILIZAR
+
+    int id_modificar = 0, id_vendido = 0, id_comprado = 0; Autos modificar;
+
+    //BUSCAMOS EL CARRO
+
+    styleOutput("italic","yellow","Ingresa el 'ID' del carro para modificar sus datos:");id_modificar = styleIputInt("yellow");
+    buscarCarro(id_modificar, numero_carros, carros, reiniciar);
+
+    styleOutput("italic","yellow","ID del nuevo vendedor:");cin>>modificar.id_vendido;
+    styleOutput("italic","yellow","ID del nuevo comprador:");cin>>modificar.id_comprado;
+    styleOutput("italic","yellow","Precio de venta:");cin>>modificar.precio_vendido;
+    styleOutput("italic","yellow","Precio de compra:");cin>>modificar.precio_comprado;cout<<endl;
+
+    //ARCHIVO DE SALIDA
+
+    ofstream salida;
+
+    //GUARDAMOS DATOS DEL CARRO
+
+    carros[id_modificar].id_vendido = modificar.id_vendido;
+    carros[id_modificar].id_comprado = modificar.id_comprado;
+    carros[id_modificar].precio_vendido = modificar.precio_vendido;
+    carros[id_modificar].precio_comprado = modificar.precio_comprado;
+
+    //BUSCAMOS EL CLIENTE
+    
+    buscarID(numero_clientes, numero_carros, carros, clientes, modificar, id_vendido, id_comprado, modificar.id_vendido, modificar.id_comprado, reiniciar);
+
+    //GUARDAMOS DATOS DE EL ARCHIVO
+
+    salida.open("../assets/cars.csv");
+    salida<<encabezado_clientes<<endl;
+    for (int i = 0; i < numero_carros; i++)
+    {
+        salida<<carros[i].id<<";"<<carros[i].marca<<";"<<carros[i].modelo<<";"<<carros[i].year<<";"<<carros[i].id_vendido<<";"<<carros[i].id_comprado<<";"<<carros[i].precio_vendido<<";"<<carros[i].precio_comprado<<endl;
+    }
+
+    //CERRAMOS ARCHIVO
+
+    salida.close();
+    styleOutput("bold","green","Datos del carro se modificaron exitosamente!");cout<<endl<<endl;
+    reiniciar = false;
+}
