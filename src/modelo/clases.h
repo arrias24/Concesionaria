@@ -19,7 +19,29 @@ class Usuarios {
             cout<<"- Email: "<<email<<endl;
             cout<<"- Edad: "<<edad<<endl;
         }
+        void agregarDatosUsuarios(int numero_clientes, Usuarios clientes[], Usuarios agregar)
+        {
+            //ARCHIVO DE SALIDA
 
+            ofstream salida;
+            salida.open("../assets/clients.csv", ios::app);
+
+            //GUARDAMOS DATOS DEL CLIENTE
+
+            numero_clientes += 1;
+            clientes[numero_clientes].id = agregar.id;
+            clientes[numero_clientes].nombre = agregar.nombre;
+            clientes[numero_clientes].apellido = agregar.apellido;
+            clientes[numero_clientes].email = agregar.email;
+            clientes[numero_clientes].edad = agregar.edad;
+
+            salida<<clientes[numero_clientes].id<<";"<<clientes[numero_clientes].nombre<<";"<<clientes[numero_clientes].apellido<<";"<<clientes[numero_clientes].email<<";"<<clientes[numero_clientes].edad<<endl;
+        
+            //CERRAMOS ARCHIVO
+
+            salida.close();
+            styleOutput("bold","green","Datos del cliente se guardaron exitosamente!");cout<<endl<<endl;
+        }
 };
 
 class Autos{

@@ -25,3 +25,25 @@ void buscarCarro(int& id_carro, int numero_carros, Autos carros[], bool estado)
         exit(0);
     }
 }
+
+int buscarClientePorNombre(int numero_clientes, Usuarios clientes[], Usuarios agregar, bool& estado)
+{
+    int x = 0;
+    for (int i = 0; i < numero_clientes; i++)
+    {
+        if (agregar.nombre == clientes[i].nombre)
+        {
+            for (int j = 0; j < numero_clientes; j++)
+            {
+                if (agregar.apellido == clientes[j].apellido)
+                {
+                    styleOutput("bold","red","[Error] El cliente ya se encuentra en la base de datos.");cout<<endl<<endl;
+                    estado = false;
+                    return 1;
+                }
+            }
+        }
+        x += 1;
+    }
+    return x;
+}

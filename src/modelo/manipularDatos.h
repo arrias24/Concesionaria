@@ -6,5 +6,6 @@ using namespace std;
 
 void buscarCliente(int& id_cliente, int numero_clientes, Usuarios clientes[], bool estado);
 void buscarCarro(int& id_carro, int numero_carros, Autos carros[], bool estado);
+int buscarClientePorNombre(int numero_clientes, Usuarios clientes[], Usuarios agregar);
 
 #endif

@@ -101,3 +101,31 @@ void mostrarHistorialCarro(int numero_clientes, int numero_carros, Usuarios clie
     }
     reiniciar = false;
 }
+
+//CASO 3 - AGREGAR DATOS DE UN CLIENTE
+
+void agregarDatosCliente(int numero_clientes, Usuarios clientes[], bool& reiniciar)
+{
+    //VARIABLES A UTILIZAR
+
+    Usuarios agregar; int x = 0;
+
+    //NUEVOS DATOS CLIENTE
+
+    agregar.id = (numero_clientes + 1);
+    styleOutput("bold","","Ingrese los datos del cliente:");cout<<endl<<endl;
+    styleOutput("italic","yellow","Nombre:");cin>>agregar.nombre;
+    styleOutput("italic","yellow","Apellido:");cin>>agregar.apellido;
+    styleOutput("italic","yellow","E-mail:");cin>>agregar.email;
+    styleOutput("italic","yellow","Edad:");cin>>agregar.edad;cout<<endl;
+
+    //DETECTOR DE CLIENTE REPETIDO
+
+    x = buscarClientePorNombre(numero_clientes, clientes, agregar, reiniciar);
+
+    if (x == numero_clientes)
+    {
+        clientes[numero_clientes].agregarDatosUsuarios(numero_clientes, clientes, agregar);
+        reiniciar = false;
+    } 
+}
