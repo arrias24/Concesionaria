@@ -129,3 +129,34 @@ void agregarDatosCliente(int numero_clientes, Usuarios clientes[], bool& reinici
         reiniciar = false;
     } 
 }
+
+//CASO 4 - AGREGAR DATOS DE UN CARRO
+
+void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos carros[], Usuarios clientes[], bool& reiniciar)
+{
+    Autos agregar; int id_vendido, id_comprado;
+    agregar.id = (numero_carros + 1);
+            
+    //NUEVOS DATOS CARRO
+
+    styleOutput("bold","","Ingrese los datos del carro:");cout<<endl<<endl;
+    styleOutput("italic","yellow","Marca:");cin.ignore();getline(cin, agregar.marca);
+    styleOutput("italic","yellow","Modelo:");getline(cin, agregar.modelo);
+    styleOutput("italic","yellow","Año:");cin>>agregar.year;
+    styleOutput("italic","yellow","ID del vendedor:");cin>>agregar.id_vendido;
+    styleOutput("italic","yellow","ID del comprador:");cin>>agregar.id_comprado;
+    styleOutput("italic","yellow","Precio de compra:");cin>>agregar.precio_vendido;
+    styleOutput("italic","yellow","Precio de venta:");cin>>agregar.precio_comprado;cout<<endl;
+
+    //DETECTOR DE CLIENTE AUSENTE
+
+    buscarID(numero_clientes, numero_carros, carros, clientes, agregar, id_vendido, id_comprado, agregar.id_vendido, agregar.id_comprado, reiniciar);
+
+    //GUARDAMOS DATOS DEL CARRO
+
+    if (reiniciar == true)
+    {
+        carros[numero_carros + 1].agregarDatosAutos(numero_carros, carros, agregar);
+        reiniciar = false;
+    }
+}

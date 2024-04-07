@@ -47,3 +47,33 @@ int buscarClientePorNombre(int numero_clientes, Usuarios clientes[], Usuarios ag
     }
     return x;
 }
+
+void buscarID(int numero_clientes, int numero_carros,  Autos carros[], Usuarios clientes[], Autos agregar, int& id1, int& id2, int id_vendido, int id_comprado, bool estado)
+{
+    if (agregar.id_vendido > numero_clientes) 
+    {
+        styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del vendedor seleccionado.");cout<<endl<<endl;
+        estado =false;
+        exit(0);
+    }else if (agregar.id_comprado > numero_clientes) {
+        styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del comprador seleccionado.");cout<<endl<<endl;
+        estado =false;
+        exit(0);
+    }
+
+    int low = 0, high = numero_clientes - 1;
+    id1 = binarySearch(low, high, clientes, id_vendido, estado);
+
+    if(id1 == -1){
+        styleOutput("bold","rojo","""[ERROR] No se encontró el 'ID' del vendedor seleccionado.");cout<<endl<<endl;
+        exit(0);
+    }
+
+    low = 0; high = numero_clientes - 1;
+    id2 = binarySearch(low, high, clientes, id_comprado, estado);
+
+    if(id2 == -1){
+        styleOutput("bold","rojo","[ERROR] No se encontró el 'ID' del comprador seleccionado.");cout<<endl<<endl;
+        exit(0);
+    }
+}

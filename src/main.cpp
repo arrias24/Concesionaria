@@ -80,71 +80,14 @@ int main()
             }
 
             case 4:{ //AGREGAR DATOS DE UN CARRO
-                Autos agregar;
-                agregar.id = (numero_carros + 1);
 
-                styleOutput("bold","","Ingrese los datos del carro:");cout<<endl<<endl;
-                styleOutput("italic","yellow","Marca:");cin.ignore();getline(cin, agregar.marca);
-                styleOutput("italic","yellow","Modelo:");getline(cin, agregar.modelo);
-                styleOutput("italic","yellow","Año:");cin>>agregar.year;
-                styleOutput("italic","yellow","ID del vendedor:");cin>>agregar.id_vendido;
-                styleOutput("italic","yellow","ID del comprador:");cin>>agregar.id_comprado;
-                styleOutput("italic","yellow","Precio de venta:");cin>>agregar.precio_vendido;
-                styleOutput("italic","yellow","Precio de compra:");cin>>agregar.precio_comprado;cout<<endl;
-                
-                //DETECTOR DE CLIENTE AUSENTE
-                if (agregar.id_vendido > numero_clientes) 
-                {
-                    styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del vendedor seleccionado.");cout<<endl<<endl;
-                    return 1;
-                }else if (agregar.id_comprado > numero_clientes) {
-                    styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del comprador seleccionado.");cout<<endl<<endl;
-                    return 1;
-                }
-                
-                bool flag = true;
-                for (int i = 0; i < numero_clientes; i++)
-                {
-                    if (clientes[i].id == agregar.id_vendido)
-                    {
-                        flag = false;
-                    }
-                }if (flag == true) {
-                    styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del vendedor seleccionado.");cout<<endl<<endl;
-                    return 1;
-                }for (int i = 0; i < numero_clientes; i++)
-                {
-                    if (clientes[i].id == agregar.id_comprado)
-                    {
-                        flag = false;
-                    }
-                }if (flag ==  true){
-                    styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del comprador seleccionado.");cout<<endl<<endl;
-                    return 1;
-                }
-                    
-                //GUARDAMOS DATOS DEL CARRO               
-                if (flag == false)
-                {
-                    //ARCHIVO DE SALIDA
-                    ofstream salida;
-                    salida.open("../assets/cars.csv", ios::app);
+                //LLAMAMOS A LA FUNCION
 
-                    numero_carros += 1;
-                    carros[numero_carros].id = agregar.id;
-                    carros[numero_carros].marca = agregar.marca;
-                    carros[numero_carros].modelo = agregar.modelo;
-                    carros[numero_carros].year = agregar.year;
-                    carros[numero_carros].id_vendido = agregar.id_vendido;
-                    carros[numero_carros].id_comprado = agregar.id_comprado;
-                    carros[numero_carros].precio_vendido = agregar.precio_vendido;
-                    carros[numero_carros].precio_comprado = agregar.precio_comprado;
-            
-                    salida<<carros[numero_carros].id<<";"<<carros[numero_carros].marca<<";"<<carros[numero_carros].modelo<<";"<<carros[numero_carros].year<<";"<<carros[numero_carros].id_vendido<<";"<<carros[numero_carros].id_comprado<<";"<<carros[numero_carros].precio_vendido<<";"<<carros[numero_carros].precio_comprado<<endl;
-                    styleOutput("bold","green","Datos del carro se guardaron exitosamente!");cout<<endl<<endl;
-                }
-                reiniciar = false;
-                break;
+                agregarDatosCarro(numero_clientes, numero_carros,  carros, clientes, reiniciar);
+
+                //FIN
+
+                break;   
             }
 
             case 5:{ //MODIFICAR DATOS DE UN CARRO

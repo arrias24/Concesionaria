@@ -1,4 +1,6 @@
 #include <iostream>
+
+#include "./estilos.h"
 using namespace std;
 #ifndef CLASES_H
 #define CLASES_H
@@ -13,11 +15,11 @@ class Usuarios {
         int edad;
     //METODOS
         void mostrarDatos(int id, string nombre, string apellido, string email, int edad){
-            cout<<"- Id: "<<id<<endl;
-            cout<<"- Nombre: "<<nombre<<endl;
-            cout<<"- Apellido: "<<apellido<<endl;
-            cout<<"- Email: "<<email<<endl;
-            cout<<"- Edad: "<<edad<<endl;
+            cout<<"- ";styleOutput("Bold","","Id:");cout<<id<<endl;
+            cout<<"- ";styleOutput("Bold","","Nombre:");cout<<nombre<<endl;
+            cout<<"- ";styleOutput("Bold","","Apellido:");cout<<apellido<<endl;
+            cout<<"- ";styleOutput("Bold","","Email:");cout<<email<<endl;
+            cout<<"- ";styleOutput("Bold","","Edad:");cout<<edad<<endl;
         }
         void agregarDatosUsuarios(int numero_clientes, Usuarios clientes[], Usuarios agregar)
         {
@@ -58,14 +60,41 @@ class Autos{
         float precio_comprado;
     //METODOS
         void mostrarDatos(int id, string marca, string modelo, int year, int id_vendido, int id_comprado, float precio_vendido, float precio_comprado){
-            cout<<"- Id: "<<id<<endl;
-            cout<<"- Marca: "<<marca<<endl;
-            cout<<"- Modelo: "<<modelo<<endl;
-            cout<<"- Ano: "<<year<<endl;
-            cout<<"- Id vendedor: "<<id_vendido<<endl;
-            cout<<"- Id comprador: "<<id_comprado<<endl;
-            cout<<"- Precio de compra: "<<precio_vendido<<endl;
-            cout<<"- Precio de venta: "<<precio_comprado<<endl<<endl;
+            cout<<"- ";styleOutput("Bold","","Id:");cout<<id<<endl;
+            cout<<"- ";styleOutput("Bold","","Marca:");cout<<marca<<endl;
+            cout<<"- ";styleOutput("Bold","","Modelo:");cout<<modelo<<endl;
+            cout<<"- ";styleOutput("Bold","","Año:");cout<<year<<endl;
+            cout<<"- ";styleOutput("Bold","","Id vendedor:");cout<<id_vendido<<endl;
+            cout<<"- ";styleOutput("Bold","","Id comprador:");cout<<id_comprado<<endl;
+            cout<<"- ";styleOutput("Bold","","Precio de compra:");cout<<precio_vendido<<endl;
+            cout<<"- ";styleOutput("Bold","","Precio de venta:");cout<<precio_comprado<<endl;
+        }
+
+        void agregarDatosAutos(int numero_carros, Autos carros[], Autos agregar)
+        {
+            //ARCHIVO DE SALIDA
+
+            ofstream salida;
+            salida.open("../assets/cars.csv", ios::app);
+
+            //GUARDAMOS DATOS DEL CARRO
+
+            numero_carros += 1;
+            carros[numero_carros].id = agregar.id;
+            carros[numero_carros].marca = agregar.marca;
+            carros[numero_carros].modelo = agregar.modelo;
+            carros[numero_carros].year = agregar.year;
+            carros[numero_carros].id_vendido = agregar.id_vendido;
+            carros[numero_carros].id_comprado = agregar.id_comprado;
+            carros[numero_carros].precio_vendido = agregar.precio_vendido;
+            carros[numero_carros].precio_comprado = agregar.precio_comprado;
+
+            salida<<carros[numero_carros].id<<";"<<carros[numero_carros].marca<<";"<<carros[numero_carros].modelo<<";"<<carros[numero_carros].year<<";"<<carros[numero_carros].id_vendido<<";"<<carros[numero_carros].id_comprado<<";"<<carros[numero_carros].precio_vendido<<";"<<carros[numero_carros].precio_comprado<<endl;
+
+            //CERRAMOS ARCHIVO
+
+            salida.close();
+            styleOutput("bold","green","Datos del carro se guardaron exitosamente!");cout<<endl<<endl;
         }
 };
 #endif
