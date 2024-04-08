@@ -209,3 +209,62 @@ void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos carros[], 
     styleOutput("bold","green","Datos del carro se modificaron exitosamente!");cout<<endl<<endl;
     reiniciar = false;
 }
+
+//CASO 6 - BORRAR DATOS DE UN CLIENTE
+
+void borrarDatosCliente(string encabezado_clientes, int numero_clientes, Usuarios clientes[], bool& reiniciar)
+{
+    int id_borrar;
+    styleOutput("italic","yellow","Ingresa el 'ID' del cliente para borrar sus datos:"); id_borrar = styleIputInt("yellow");
+
+    //ARCHIVO DE SALIDA
+
+    ofstream salida;
+    abrirArchivoClientes(salida, "../assets/clients.csv");
+
+    //GUARDAMOS DATOS DE LOS CLIENTES EXCEPTO DE QUIEN SE HA DE ELIMINAR
+
+    salida<<encabezado_clientes<<endl;
+    for(int i = 0; i < numero_clientes; i++)
+    {
+        if(clientes[i].id != id_borrar)
+        {
+            salida<<clientes[i].id<<";"<<clientes[i].nombre<<";"<<clientes[i].apellido<<";"<<clientes[i].email<<";"<<clientes[i].edad<<endl;
+        }
+    }
+
+    //CERRAMOS ARCHIVO
+
+    salida.close();
+    styleOutput("bold","green","Datos del cliente borrado exitosamente!");cout<<endl<<endl;
+    reiniciar = false;
+}
+
+//CASO 7 - BORRAR DATOS DE UN CARRO.
+
+void borrarDatosCarro(string encabezado_carros, int numero_carros, Autos carros[], bool& reiniciar){
+
+    int id_borrar;
+    styleOutput("italic","yellow","Ingresa el 'ID' del carro para borrar sus datos:"); id_borrar = styleIputInt("yellow");
+
+    //ARCHIVO DE SALIDA
+
+    ofstream salida;
+    abrirArchivoCarros(salida, "../assets/cars.csv");
+
+    //GUARDAMOS DATOS DE LOS CARROS EXCEPTO DEL CUAL SE HA DE ELIMINAR
+
+    salida<<encabezado_carros<<endl;
+    for(int i = 0; i < numero_carros; i++)
+    {
+        if(carros[i].id != id_borrar){
+            salida<<carros[i].id<<";"<<carros[i].marca<<";"<<carros[i].modelo<<";"<<carros[i].year<<";"<<carros[i].id_vendido<<";"<<carros[i].id_comprado<<";"<<carros[i].precio_vendido<<";"<<carros[i].precio_comprado<<endl;
+        }
+    }
+
+    //CERRAMOS ARCHIVO
+
+    salida.close();
+    styleOutput("bold","green","Datos del carro borrado exitosamente!");cout<<endl<<endl;
+    reiniciar = false;
+}
