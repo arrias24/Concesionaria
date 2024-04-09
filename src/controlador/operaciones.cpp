@@ -14,7 +14,7 @@ using namespace std;
 
 //CASO 1 - CARROS COMPRADOS Y VENDIDOS POR UN CLIENTE
 
-void mostrarHistorialCliente(int numero_clientes, int numero_carros, Usuarios clientes[], Autos carros[], bool& reiniciar)
+void mostrarHistorialCliente(int numero_clientes, int numero_carros, Usuarios* clientes, Autos* carros, bool& reiniciar)
 {
     //VARIABLES A UTILIZAR
 
@@ -66,7 +66,7 @@ void mostrarHistorialCliente(int numero_clientes, int numero_carros, Usuarios cl
 
 //CASO 2 - MOSTRAR DATOS DEL VENDEDOR Y COMPRADOR DE UN CARRO
 
-void mostrarHistorialCarro(int numero_clientes, int numero_carros, Usuarios clientes[], Autos carros[], bool& reiniciar)
+void mostrarHistorialCarro(int numero_clientes, int numero_carros, Usuarios* clientes, Autos* carros, bool& reiniciar)
 {
     //VARIABLES A UTILIZAR
 
@@ -104,7 +104,7 @@ void mostrarHistorialCarro(int numero_clientes, int numero_carros, Usuarios clie
 
 //CASO 3 - AGREGAR DATOS DE UN CLIENTE
 
-void agregarDatosCliente(int numero_clientes, Usuarios clientes[], bool& reiniciar)
+void agregarDatosCliente(int numero_clientes, Usuarios* clientes, bool& reiniciar)
 {
     //VARIABLES A UTILIZAR
 
@@ -132,7 +132,7 @@ void agregarDatosCliente(int numero_clientes, Usuarios clientes[], bool& reinici
 
 //CASO 4 - AGREGAR DATOS DE UN CARRO
 
-void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos carros[], Usuarios clientes[], bool& reiniciar)
+void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos* carros, Usuarios* clientes, bool& reiniciar)
 {
     Autos agregar; int id_vendido, id_comprado;
     agregar.id = (numero_carros + 1);
@@ -163,7 +163,7 @@ void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos carros[], 
 
 //CASO 5 - MODIFICAR DATOS DE UN CARRO
 
-void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos carros[], Usuarios clientes[], string encabezado_clientes, bool& reiniciar)
+void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos* carros, Usuarios* clientes, string encabezado_clientes, bool& reiniciar)
 {
     //VARIABLES A UTILIZAR
 
@@ -212,7 +212,7 @@ void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos carros[], 
 
 //CASO 6 - BORRAR DATOS DE UN CLIENTE
 
-void borrarDatosCliente(string encabezado_clientes, int numero_clientes, Usuarios clientes[], bool& reiniciar)
+void borrarDatosCliente(string encabezado_clientes, int numero_clientes, Usuarios* clientes, bool& reiniciar)
 {
     int id_borrar;
     styleOutput("italic","yellow","Ingresa el 'ID' del cliente para borrar sus datos:"); id_borrar = styleIputInt("yellow");
@@ -242,7 +242,7 @@ void borrarDatosCliente(string encabezado_clientes, int numero_clientes, Usuario
 
 //CASO 7 - BORRAR DATOS DE UN CARRO.
 
-void borrarDatosCarro(string encabezado_carros, int numero_carros, Autos carros[], bool& reiniciar){
+void borrarDatosCarro(string encabezado_carros, int numero_carros, Autos* carros, bool& reiniciar){
 
     int id_borrar;
     styleOutput("italic","yellow","Ingresa el 'ID' del carro para borrar sus datos:"); id_borrar = styleIputInt("yellow");
@@ -271,7 +271,7 @@ void borrarDatosCarro(string encabezado_carros, int numero_carros, Autos carros[
 
 //CASO 8 - GANANCIAS DE COMPRA Y VENTA DE UN CARRO
 
-void gananciasDeUnCarro(int numero_clientes, int numero_carros,  Autos carros[], Usuarios clientes[], string encabezado_clientes, bool& reiniciar)
+void gananciasDeUnCarro(int numero_clientes, int numero_carros,  Autos* carros, Usuarios* clientes, string encabezado_clientes, bool& reiniciar)
 {
     //VARIABLES A UTILIZAR
 
@@ -325,7 +325,7 @@ void gananciasDeUnCarro(int numero_clientes, int numero_carros,  Autos carros[],
 
 //CASO 9 - ESTADO GLOBAL DE LA CONSECIONARIA
 
-void estadoGlobal(int numero_clientes, int numero_carros,  Autos carros[], Usuarios clientes[], string encabezado_clientes, bool& reiniciar)
+void estadoGlobal(int numero_clientes, int numero_carros,  Autos* carros, Usuarios* clientes, string encabezado_clientes, bool& reiniciar)
 {
     //VARIABLES A UTILIZAR
 

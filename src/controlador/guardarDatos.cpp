@@ -6,10 +6,9 @@
 #include "../modelo/estilos.h"
 using namespace std;
 
-void guardarDatos(ifstream& archivo_clientes,ifstream& archivo_carros, string& encabezado_clientes, string& encabezado_carros, Usuarios clientes[], Autos carros[],  int& numero_clientes, int&  numero_carros){
-
+void guardarDatosClientes(ifstream& archivo_clientes, string& encabezado_clientes, Usuarios* clientes,  int& numero_clientes, int& capacidad_clientes)
+{
     getline(archivo_clientes, encabezado_clientes, '\n');
-    getline(archivo_carros, encabezado_carros,'\n');
     
     string linea; 
     while(getline(archivo_clientes, linea, '\n')){
@@ -27,9 +26,29 @@ void guardarDatos(ifstream& archivo_clientes,ifstream& archivo_carros, string& e
         clientes[numero_clientes].edad = std::stoi(dato);
         numero_clientes++;
     }
+    if(numero_clientes == capacidad_clientes)
+    {
+        capacidad_clientes *= 2;
+        Usuarios* temp = new Usuarios[capacidad_clientes];
+        for(int i = 0; i < numero_clientes; i++)
+        {
+            temp[i] = clientes[i];
+        }
+        delete[] clientes;
+        clientes = temp;
+            
+        guardarDatosClientes(archivo_clientes, encabezado_clientes, clientes, numero_clientes, capacidad_clientes);
+    }
     archivo_clientes.close();
+}
 
-    while(getline(archivo_carros, linea, '\n')){
+void guardarDatosCarros(ifstream& archivo_carros, string& encabezado_carros, Autos* carros, int&  numero_carros, int& capacidad_carros)
+{
+    getline(archivo_carros, encabezado_carros,'\n');
+    
+    string linea; 
+    while(getline(archivo_carros, linea, '\n'))
+    {
         stringstream stream(linea);
         string dato;
         getline(stream, dato, ';');
@@ -49,6 +68,17 @@ void guardarDatos(ifstream& archivo_clientes,ifstream& archivo_carros, string& e
         getline(stream,dato,'\n');
         carros[numero_carros].precio_comprado = std::stof(dato);            
         numero_carros++;
+    }
+    if(numero_carros == capacidad_carros)
+    {
+        capacidad_carros *= 2;
+        Autos* temp = new Autos[capacidad_carros];
+        for(int i = 0; i < numero_carros; i++){
+            temp[i] = carros[i];
+        }
+        delete[] carros;
+        carros = temp;
+        guardarDatosCarros(archivo_carros, encabezado_carros, carros, numero_carros, capacidad_carros);
     }
     archivo_carros.close();
 }

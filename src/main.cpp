@@ -30,31 +30,30 @@ int main()
 
     //CREAMOS VARIABLES, GUARDAMOS DATOS DE CLIENTES Y CARROS EN OBJETOS
     
-    Usuarios clientes[2000]; Autos carros[2000];
+    int capacidad_clientes = 100, capacidad_carros = 1000;
+    Usuarios* clientes = new Usuarios[capacidad_clientes];
+    Autos* carros = new Autos[capacidad_carros];
     int numero_clientes = 0, numero_carros = 0;
     string encabezado_clientes, encabezado_carros;
  
-    guardarDatos(archivo_clientes, archivo_carros, encabezado_clientes, encabezado_carros,clientes, carros,  numero_clientes,  numero_carros);
+    guardarDatosClientes(archivo_clientes, encabezado_clientes, clientes, numero_clientes, capacidad_clientes);
+    guardarDatosCarros(archivo_carros, encabezado_carros, carros, numero_carros, capacidad_carros);
 
+    //OPERACIONES 
 
     bool reiniciar = true;
     while( reiniciar == true)
     {
-        //MOSTRAMOS OPERACIONES 
+        //LLAMAMOS A LA FUNCION
         
         int operacion = mostrarMenu(operacion);
 
         switch (operacion)
         {
             case 1:{  //CARROS COMPRADOS Y VENDIDOS POR UN CLIENTE
-
-                //LLAMAMOS A LA FUNCION
-
                 mostrarHistorialCliente(numero_clientes, numero_carros, clientes, carros, reiniciar);
 
-                //FIN
-
-                break;    
+                break;
             }
 
             case 2:{ //HISTORIAL DE COMPRA Y VENTA DE UN CARRO
@@ -102,7 +101,7 @@ int main()
             }
 
             case 6:{ //BORRAR DATOS DE UN CLIENTE
-
+                
                 //LLAMAMOS A LA FUNCION
 
                 borrarDatosCliente(encabezado_clientes, numero_clientes, clientes, reiniciar);
@@ -120,7 +119,7 @@ int main()
 
                 //FIN
 
-                break;     
+                break;    
             }
 
             case 8:{ //GANANCIAS DE COMPRA Y VENTA DE UN CARRO
@@ -146,7 +145,7 @@ int main()
             }
 
             default:{ //OPCION POR DEFECTO
-                
+
                 //LLAMAMOS A LA FUNCION
 
                 mostrarMenuError(reiniciar);
