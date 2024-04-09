@@ -134,32 +134,15 @@ int main()
                 break;  
             }
 
-            case 9:{//ESTADO GLOBAL DE LA CONSECIONARIA
+            case 9:{ //ESTADO GLOBAL DE LA CONSECIONARIA
             
-                float valencia_de_compra, valencia_de_venta, valencia_gobal;
+                //LLAMAMOS A LA FUNCION
 
-                styleOutput("bold","yellow","Estado global de la concesionaria es el siguiente:");cout<<endl<<endl;
-                for (int i = 0; i < numero_carros; i++)
-                {
-                    valencia_de_compra += carros[i].precio_comprado;
-                    valencia_de_venta += carros[i].precio_vendido;
-                }
-                valencia_gobal = valencia_de_compra - valencia_de_venta;
+                estadoGlobal(numero_clientes, numero_carros,  carros, clientes, encabezado_clientes, reiniciar);
 
-                styleOutput("bold","","Numero de clientes:");styleOutput("bold", numero_clientes);cout<<endl;
-                styleOutput("bold","","Numero de carros:");styleOutput("bold", numero_carros);cout<<endl<<endl;;
+                //FIN
 
-                if (valencia_gobal > 0)
-                {
-                    styleOutput("italic","green","[GANANCIA] -->");cout<<fixed<<setprecision(0);styleOutput("green", valencia_gobal);styleOutput("green","$");cout<<endl<<endl;
-                    cout.unsetf(ios_base::floatfield);
-                }else if (valencia_gobal <= 0)
-                {
-                    styleOutput("italic","red","[PERDIDA] -->");cout<<fixed<<setprecision(0);styleOutput("red", abs(valencia_gobal));styleOutput("red","$");cout<<endl<<endl;
-                    cout.unsetf(ios_base::floatfield);
-                }   
-                reiniciar = false;
-                break;
+                break; 
             }
 
             default:{ //OPCION POR DEFECTO

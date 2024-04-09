@@ -322,3 +322,36 @@ void gananciasDeUnCarro(int numero_clientes, int numero_carros,  Autos carros[],
     }
     reiniciar = false;
 }
+
+//CASO 9 - ESTADO GLOBAL DE LA CONSECIONARIA
+
+void estadoGlobal(int numero_clientes, int numero_carros,  Autos carros[], Usuarios clientes[], string encabezado_clientes, bool& reiniciar)
+{
+    //VARIABLES A UTILIZAR
+
+    float valencia_de_compra, valencia_de_venta, valencia_gobal;
+
+    styleOutput("bold","yellow","Estado global de la concesionaria es el siguiente:");cout<<endl<<endl;
+                
+    for (int i = 0; i < numero_carros; i++)
+    {
+        valencia_de_compra += carros[i].precio_comprado;
+        valencia_de_venta += carros[i].precio_vendido;
+    }
+    
+    valencia_gobal = valencia_de_compra - valencia_de_venta;
+
+    styleOutput("bold","","Numero de clientes:");styleOutput("bold", numero_clientes);cout<<endl;
+    styleOutput("bold","","Numero de carros:");styleOutput("bold", numero_carros);cout<<endl<<endl;;
+
+    if (valencia_gobal > 0)
+    {
+        styleOutput("italic","green","[GANANCIA] -->");cout<<fixed<<setprecision(0);styleOutput("green", valencia_gobal);styleOutput("green","$");cout<<endl<<endl;
+        cout.unsetf(ios_base::floatfield);
+    }else if (valencia_gobal <= 0)
+    {
+        styleOutput("italic","red","[PERDIDA] -->");cout<<fixed<<setprecision(0);styleOutput("red", abs(valencia_gobal));styleOutput("red","$");cout<<endl<<endl;
+        cout.unsetf(ios_base::floatfield);
+    }   
+    reiniciar = false;
+}
