@@ -1,26 +1,29 @@
 #include <iostream>
-
 #include "./estilos.h"
 using namespace std;
 #ifndef CLASES_H
 #define CLASES_H
+
+
 class Usuarios {
 
     public:
-    //MIEMBROS
         int id;
         string nombre;
         string apellido;
         string email;
         int edad;
-    //METODOS
-        void mostrarDatos(int id, string nombre, string apellido, string email, int edad){
+        
+
+        void mostrarDatos(int id, string nombre, string apellido, string email, int edad)
+        {
             cout<<"- ";styleOutput("Bold","","Id:");cout<<id<<endl;
             cout<<"- ";styleOutput("Bold","","Nombre:");cout<<nombre<<endl;
             cout<<"- ";styleOutput("Bold","","Apellido:");cout<<apellido<<endl;
             cout<<"- ";styleOutput("Bold","","Email:");cout<<email<<endl;
             cout<<"- ";styleOutput("Bold","","Edad:");cout<<edad<<endl;
         }
+
         void agregarDatosUsuarios(int numero_clientes, Usuarios clientes[], Usuarios agregar)
         {
             //ARCHIVO DE SALIDA
@@ -49,7 +52,6 @@ class Usuarios {
 class Autos{
 
     public:
-    //MIEMBROS
         int id;
         string marca;
         string modelo;
@@ -58,8 +60,9 @@ class Autos{
         int id_comprado;
         float precio_vendido;
         float precio_comprado;
-    //METODOS
-        void mostrarDatos(int id, string marca, string modelo, int year, int id_vendido, int id_comprado, float precio_vendido, float precio_comprado){
+
+        void mostrarDatos(int id, string marca, string modelo, int year, int id_vendido, int id_comprado, float precio_vendido, float precio_comprado)
+        {
             cout<<"- ";styleOutput("Bold","","Id:");cout<<id<<endl;
             cout<<"- ";styleOutput("Bold","","Marca:");cout<<marca<<endl;
             cout<<"- ";styleOutput("Bold","","Modelo:");cout<<modelo<<endl;
@@ -97,4 +100,5 @@ class Autos{
             styleOutput("bold","green","Datos del carro se guardaron exitosamente!");cout<<endl<<endl;
         }
 };
+
 #endif

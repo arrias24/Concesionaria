@@ -4,6 +4,7 @@
 #include <sstream>
 #include "../modelo/clases.h"
 #include "../modelo/estilos.h"
+#include "../modelo/manipularDatos.h"
 using namespace std;
 
 void guardarDatosClientes(ifstream& archivo_clientes, string& encabezado_clientes, Usuarios* clientes,  int& numero_clientes, int& capacidad_clientes)
@@ -81,4 +82,18 @@ void guardarDatosCarros(ifstream& archivo_carros, string& encabezado_carros, Aut
         guardarDatosCarros(archivo_carros, encabezado_carros, carros, numero_carros, capacidad_carros);
     }
     archivo_carros.close();
+}
+
+void imprimirDatosClientes(Usuarios* clientes, int& numero_clientes) {
+    cout << "Datos de los clientes:" << endl<<endl;
+    for(int i = 0; i < numero_clientes; i++) {
+        cout<< clientes[i].id << ";" << clientes[i].nombre << ";" << clientes[i].apellido << ";" << clientes[i].email << ";" << clientes[i].edad << endl;
+    }
+}
+
+void imprimirDatosCarros(Autos* carros, int& numero_carros) {
+    cout << "Datos de los carros:" << endl<<endl;
+    for(int i = 0; i < numero_carros; i++) {
+        cout<< carros[i].id << ";" << carros[i].marca << ";" << carros[i].modelo << ";" << carros[i].year << ";" << carros[i].id_vendido << ";" << carros[i].id_comprado << ";" << carros[i].precio_vendido << ";" << carros[i].precio_comprado << endl;
+    }
 }

@@ -6,9 +6,9 @@
 #include <iomanip>
 
 //PROTOTIPOS
+#include "./modelo/binarySearch.h"
 #include "./modelo/clases.h"
 #include "./modelo/estructuras.h"
-#include "./modelo/binarySearch.h"
 
 //IMPLEMENTACIONES
 #include "./controlador/estilos.cpp"

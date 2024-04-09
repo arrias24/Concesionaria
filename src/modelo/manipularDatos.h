@@ -1,5 +1,4 @@
 #include <iostream>
-#include "./clases.h"
 using namespace std;
 #ifndef MANIPULAR_DATOS_H
 #define MANIPULAR_DATOS_H

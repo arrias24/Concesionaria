@@ -2,6 +2,7 @@
 #include <fstream>
 #include "../modelo/clases.h"
 #include "../modelo/estilos.h"
+#include "../modelo/manipularDatos.h"
 using namespace std;
 
 void abrirArchivoClientes(ifstream& archivo_clientes, string ruta){
@@ -31,3 +32,5 @@ void abrirArchivoCarros(ofstream& archivo_carros, string ruta){
         cout<<endl;styleOutput("bold","red","[ERROR] No se ha podido abrir el archivo correctamente.");cout<<endl;
     }
 }
+
+

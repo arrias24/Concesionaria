@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <iomanip>
 
 #include "../modelo/clases.h"
 #include "../modelo/estructuras.h"
@@ -269,6 +270,7 @@ void borrarDatosCarro(string encabezado_carros, int numero_carros, Autos* carros
     reiniciar = false;
 }
 
+
 //CASO 8 - GANANCIAS DE COMPRA Y VENTA DE UN CARRO
 
 void gananciasDeUnCarro(int numero_clientes, int numero_carros,  Autos* carros, Usuarios* clientes, string encabezado_clientes, bool& reiniciar)
@@ -352,6 +354,6 @@ void estadoGlobal(int numero_clientes, int numero_carros,  Autos* carros, Usuari
     {
         styleOutput("italic","red","[PERDIDA] -->");cout<<fixed<<setprecision(0);styleOutput("red", abs(valencia_gobal));styleOutput("red","$");cout<<endl<<endl;
         cout.unsetf(ios_base::floatfield);
-    }   
+    }    
     reiniciar = false;
 }

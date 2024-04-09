@@ -4,8 +4,7 @@
 #include "../modelo/estilos.h"
 using namespace std;
 
-void buscarCliente(int& id_cliente, int numero_clientes, Usuarios clientes[], bool estado)
-{
+void buscarCliente(int& id_cliente, int numero_clientes, Usuarios clientes[], bool estado){
     int low = 0, high = numero_clientes - 1;
     id_cliente = binarySearch(low, high, clientes, id_cliente, estado);
 
@@ -15,8 +14,7 @@ void buscarCliente(int& id_cliente, int numero_clientes, Usuarios clientes[], bo
     }
 }
 
-void buscarCarro(int& id_carro, int numero_carros, Autos carros[], bool estado)
-{
+void buscarCarro(int& id_carro, int numero_carros, Autos carros[], bool estado){
     int low = 0, high = numero_carros - 1;
     id_carro = binarySearch(low, high, carros, id_carro, estado);
 
@@ -26,8 +24,7 @@ void buscarCarro(int& id_carro, int numero_carros, Autos carros[], bool estado)
     }
 }
 
-int buscarClientePorNombre(int numero_clientes, Usuarios clientes[], Usuarios agregar, bool& estado)
-{
+int buscarClientePorNombre(int numero_clientes, Usuarios clientes[], Usuarios agregar, bool& estado){
     int x = 0;
     for (int i = 0; i < numero_clientes; i++)
     {
@@ -48,8 +45,7 @@ int buscarClientePorNombre(int numero_clientes, Usuarios clientes[], Usuarios ag
     return x;
 }
 
-void buscarID(int numero_clientes, int numero_carros,  Autos carros[], Usuarios clientes[], Autos agregar, int& id1, int& id2, int id_vendido, int id_comprado, bool estado)
-{
+void buscarID(int numero_clientes, int numero_carros,  Autos carros[], Usuarios clientes[], Autos agregar, int& id1, int& id2, int id_vendido, int id_comprado, bool estado){
     if (agregar.id_vendido > numero_clientes) 
     {
         styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del vendedor seleccionado.");cout<<endl<<endl;

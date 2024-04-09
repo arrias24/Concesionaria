@@ -296,4 +296,4 @@ void lowercase(string &variable)
     {
         variable[i] = tolower(variable[i]);
     }
-}   
+}
