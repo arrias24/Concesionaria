@@ -7,7 +7,7 @@
 #include "../modelo/manipularDatos.h"
 using namespace std;
 
-void guardarDatosClientes(ifstream& archivo_clientes, string& encabezado_clientes, Usuarios* clientes,  int& numero_clientes, int& capacidad_clientes)
+void guardarDatosClientes(ifstream& archivo_clientes, string& encabezado_clientes, Usuarios*& clientes,  int& numero_clientes, int& capacidad_clientes)
 {
     getline(archivo_clientes, encabezado_clientes, '\n');
     
@@ -43,7 +43,7 @@ void guardarDatosClientes(ifstream& archivo_clientes, string& encabezado_cliente
     archivo_clientes.close();
 }
 
-void guardarDatosCarros(ifstream& archivo_carros, string& encabezado_carros, Autos* carros, int&  numero_carros, int& capacidad_carros)
+void guardarDatosCarros(ifstream& archivo_carros, string& encabezado_carros, Autos*& carros, int&  numero_carros, int& capacidad_carros)
 {
     getline(archivo_carros, encabezado_carros,'\n');
     
