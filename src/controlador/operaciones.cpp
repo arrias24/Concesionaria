@@ -282,7 +282,7 @@ void borrarDatosCarro(string encabezado_carros, int numero_carros, Autos* carros
 
 //CASO 8 - GANANCIAS DE COMPRA Y VENTA DE UN CARRO
 
-void gananciasDeUnCarro(int numero_clientes, int numero_carros,  Autos* carros, Usuarios* clientes, string encabezado_clientes, bool& reiniciar)
+void gananciasDeUnCarro(int numero_clientes, int numero_carros,  Autos carros[], Usuarios clientes[], string encabezado_clientes, bool& reiniciar)
 {
     //VARIABLES A UTILIZAR
 
@@ -308,11 +308,7 @@ void gananciasDeUnCarro(int numero_clientes, int numero_carros,  Autos* carros, 
         {
             if(carros[id_valance_de_venta].id_comprado == clientes[i].id)
             {
-                styleOutput("bold","","Marca:");cout<<carros[id_valance_de_venta].marca<<endl;
-                styleOutput("bold","","Modelo:");cout<<carros[id_valance_de_venta].modelo<<endl;
-                styleOutput("bold","","Año:");cout<<carros[id_valance_de_venta].year<<endl<<endl;
-                styleOutput("bold","","Precio de compra:");cout<<carros[id_valance_de_venta].precio_vendido<<endl;
-                styleOutput("bold","","Precio de venta:");cout<<carros[id_valance_de_venta].precio_comprado<<endl<<endl;
+                carros[id_valance_de_venta].mostrarDatos(carros[id_valance_de_venta].id, carros[id_valance_de_venta].marca, carros[id_valance_de_venta].modelo, carros[id_valance_de_venta].year, carros[id_valance_de_venta].id_comprado, carros[id_valance_de_venta].id_vendido, carros[id_valance_de_venta].precio_comprado, carros[id_valance_de_venta].precio_vendido);cout<<endl;
                 styleOutput("italic","green","[GANANCIA] -->");styleOutput("green",valance_de_venta);styleOutput("green","$");cout<<endl<<endl;
             }         
         }
@@ -322,11 +318,7 @@ void gananciasDeUnCarro(int numero_clientes, int numero_carros,  Autos* carros, 
         {
             if(carros[id_valance_de_venta].id_comprado == clientes[i].id)
             {
-                styleOutput("bold","","Marca:");cout<<carros[id_valance_de_venta].marca<<endl;
-                styleOutput("bold","","Modelo:");cout<<carros[id_valance_de_venta].modelo<<endl; 
-                styleOutput("bold","","Año:");cout<<carros[id_valance_de_venta].year<<endl<<endl;
-                styleOutput("bold","","Precio de compra:");cout<<carros[id_valance_de_venta].precio_vendido<<endl;
-                styleOutput("bold","","Precio de venta:");cout<<carros[id_valance_de_venta].precio_comprado<<endl<<endl;
+                carros[id_valance_de_venta].mostrarDatos(carros[id_valance_de_venta].id, carros[id_valance_de_venta].marca, carros[id_valance_de_venta].modelo, carros[id_valance_de_venta].year, carros[id_valance_de_venta].id_comprado, carros[id_valance_de_venta].id_vendido, carros[id_valance_de_venta].precio_comprado, carros[id_valance_de_venta].precio_vendido);cout<<endl;
                 styleOutput("italic","red","[PERDIDA] -->");styleOutput("red",abs(valance_de_venta));styleOutput("red","$");cout<<endl<<endl;
             }         
         }
