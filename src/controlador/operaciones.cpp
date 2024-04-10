@@ -73,10 +73,22 @@ void mostrarHistorialCarro(int numero_clientes, int numero_carros, Usuarios* cli
 
     int id_carro; bool estado = false;
 
-    //BUSCAMOS EL ID DEL CARRO
+    //PEDIMOS EL ID DEL CARRO
 
     styleOutput("italic", "yellow","Ingresa el 'ID' del carro para buscar su informacion:");
     id_carro = styleIputInt("yellow");
+
+    //IMPRIMIMOS DATOS DEL CARRO
+
+    for(int i = 0; i < numero_carros; i++){
+        if(carros[i].id == id_carro){
+            styleOutput("Bold","","Datos del carro:");cout<<endl<<endl;
+            carros[i].mostrarDatos(carros[i].id, carros[i].marca, carros[i].modelo, carros[i].year, carros[i].id_comprado, carros[i].id_vendido, carros[i].precio_comprado, carros[i].precio_vendido);cout<<endl;
+        }
+    }
+    
+    //BUSCAMOS SU UBICACION
+
     buscarCarro(id_carro, numero_carros, carros, estado);
 
     //BUSCAMOS EL CARRO POR SU ID Y LUEGO COMPARAMOS A SU COMPRADOR Y VENDEDOR
@@ -85,8 +97,6 @@ void mostrarHistorialCarro(int numero_clientes, int numero_carros, Usuarios* cli
     {
         if(carros[id_carro].id_comprado == clientes[i].id)
         {
-            styleOutput("Bold","","Datos del carro:");cout<<endl<<endl;
-            carros[i].mostrarDatos(carros[i].id, carros[i].marca, carros[i].modelo, carros[i].year, carros[i].id_comprado, carros[i].id_vendido, carros[i].precio_comprado, carros[i].precio_vendido);cout<<endl;
             styleOutput("Bold","","Datos del comprador:");cout<<endl<<endl;
             clientes[i].mostrarDatos(clientes[i].id, clientes[i].nombre, clientes[i].apellido, clientes[i].email, clientes[i].edad);cout<<endl<<endl;   
         }         
@@ -102,7 +112,6 @@ void mostrarHistorialCarro(int numero_clientes, int numero_carros, Usuarios* cli
     }
     reiniciar = false;
 }
-
 //CASO 3 - AGREGAR DATOS DE UN CLIENTE
 
 void agregarDatosCliente(int numero_clientes, Usuarios* clientes, bool& reiniciar)
