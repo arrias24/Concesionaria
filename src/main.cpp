@@ -42,6 +42,8 @@ int main()
     //OPERACIONES 
 
     bool reiniciar = true;
+    int x = 0;
+    int y = 0;
     while( reiniciar == true)
     {
         //LLAMAMOS A LA FUNCION
@@ -52,6 +54,7 @@ int main()
         {
             case 1:{  //CARROS COMPRADOS Y VENDIDOS POR UN CLIENTE
                 mostrarHistorialCliente(numero_clientes, numero_carros, clientes, carros, reiniciar);
+                bucle(reiniciar);
 
                 break;
             }
@@ -61,6 +64,7 @@ int main()
                 //LLAMAMOS A LA FUNCION
 
                 mostrarHistorialCarro(numero_clientes, numero_carros, clientes, carros, reiniciar);
+                bucle(reiniciar);
 
                 //FIN
 
@@ -71,7 +75,8 @@ int main()
 
                 //LLAMAMOS A LA FUNCION
 
-                agregarDatosCliente(numero_clientes, clientes, reiniciar);
+                agregarDatosCliente(numero_clientes, clientes, reiniciar, x);
+                bucle(reiniciar);
 
                 //FIN
 
@@ -82,7 +87,8 @@ int main()
 
                 //LLAMAMOS A LA FUNCION
 
-                agregarDatosCarro(numero_clientes, numero_carros,  carros, clientes, reiniciar);
+                agregarDatosCarro(numero_clientes, numero_carros,  carros, clientes, reiniciar, y);
+                bucle(reiniciar);
 
                 //FIN
 
@@ -94,6 +100,7 @@ int main()
                 //LLAMAMOS A LA FUNCION
 
                 agregarDatosCarro(numero_clientes, numero_carros,  carros, clientes, encabezado_clientes, reiniciar);
+                bucle(reiniciar);
 
                 //FIN
 
@@ -105,6 +112,7 @@ int main()
                 //LLAMAMOS A LA FUNCION
 
                 borrarDatosCliente(encabezado_clientes, numero_clientes, clientes, reiniciar);
+                bucle(reiniciar);
 
                 //FIN
 
@@ -116,6 +124,7 @@ int main()
                 //LLAMAMOS A LA FUNCION
 
                 borrarDatosCarro(encabezado_carros, numero_carros, carros, reiniciar);
+                bucle(reiniciar);
 
                 //FIN
 
@@ -127,6 +136,7 @@ int main()
                 //LLAMAMOS A LA FUNCION
 
                 gananciasDeUnCarro(numero_clientes, numero_carros, carros, clientes, encabezado_clientes, reiniciar);
+                bucle(reiniciar);
 
                 //FIN
 
@@ -138,6 +148,7 @@ int main()
                 //LLAMAMOS A LA FUNCION
 
                 estadoGlobal(numero_clientes, numero_carros,  carros, clientes, encabezado_clientes, reiniciar);
+                bucle(reiniciar);
 
                 //FIN
 

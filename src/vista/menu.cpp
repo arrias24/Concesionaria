@@ -19,8 +19,18 @@ int mostrarMenu(int operacion){
 
 void mostrarMenuError(bool& reiniciar){
     string decision;
-    styleOutput("bold","red","[ERROR] Has ingresado una operacion invalida.");cout<<endl;
+    styleOutput("bold","red","[ERROR] Has ingresado una operacion invalida.");cout<<endl<<endl;
     styleOutput("italic","yellow","Deseas volver a intentarlo? (s/n):");decision = styleIputChar("yellow");
+    lowercase(decision);
+
+    if(decision == "n"){
+        reiniciar = false;
+    }
+}
+
+void bucle(bool& reiniciar){
+    string decision;
+    styleOutput("italic","yellow","Deseas volver a usar el programa? (s/n):");decision = styleIputChar("yellow");
     lowercase(decision);
 
     if(decision == "n"){

@@ -60,9 +60,7 @@ void mostrarHistorialCliente(int numero_clientes, int numero_carros, Usuarios* c
         if(clientes[id_cliente].id == carros[i].id_comprado){
             carros[i].mostrarDatos(carros[i].id, carros[i].marca, carros[i].modelo, carros[i].year, carros[i].id_comprado, carros[i].id_vendido, carros[i].precio_comprado, carros[i].precio_vendido);cout<<endl;
         }
-    }
-
-    reiniciar = false;    
+    } 
 }
 
 //CASO 2 - MOSTRAR DATOS DEL VENDEDOR Y COMPRADOR DE UN CARRO
@@ -110,19 +108,18 @@ void mostrarHistorialCarro(int numero_clientes, int numero_carros, Usuarios* cli
             clientes[i].mostrarDatos(clientes[i].id, clientes[i].nombre, clientes[i].apellido, clientes[i].email, clientes[i].edad);cout<<endl<<endl;   
         }       
     }
-    reiniciar = false;
 }
 //CASO 3 - AGREGAR DATOS DE UN CLIENTE
 
-void agregarDatosCliente(int numero_clientes, Usuarios* clientes, bool& reiniciar)
+void agregarDatosCliente(int numero_clientes, Usuarios* clientes, bool& reiniciar, int& x)
 {
     //VARIABLES A UTILIZAR
 
-    Usuarios agregar; int x = 0;
+    Usuarios agregar;
 
     //NUEVOS DATOS CLIENTE
 
-    agregar.id = (clientes[numero_clientes - 1].id + 1);
+    agregar.id = (clientes[numero_clientes - 1].id + 1 + x);
     styleOutput("bold","","Ingrese los datos del cliente:");cout<<endl<<endl;
     styleOutput("italic","yellow","Nombre:");cin>>agregar.nombre;
     styleOutput("italic","yellow","Apellido:");cin>>agregar.apellido;
@@ -130,15 +127,15 @@ void agregarDatosCliente(int numero_clientes, Usuarios* clientes, bool& reinicia
     styleOutput("italic","yellow","Edad:");cin>>agregar.edad;cout<<endl;
 
     clientes[numero_clientes].agregarDatosUsuarios(numero_clientes, clientes, agregar);
-    reiniciar = false;
+    x += 1;
 }
 
 //CASO 4 - AGREGAR DATOS DE UN CARRO
 
-void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos* carros, Usuarios* clientes, bool& reiniciar)
+void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos* carros, Usuarios* clientes, bool& reiniciar, int& x)
 {
-    Autos agregar; int id_vendido, id_comprado;
-    agregar.id = (carros[numero_carros - 1].id + 1);
+    Autos agregar; int id_vendido, id_comprado; 
+    agregar.id = (carros[numero_carros - 1].id + 1 + x);
             
     //NUEVOS DATOS CARRO
 
@@ -160,7 +157,8 @@ void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos* carros, U
     if (reiniciar == true)
     {
         carros[numero_carros + 1].agregarDatosAutos(numero_carros, carros, agregar);
-        reiniciar = false;
+        x += 1;
+
     }
 }
 
@@ -210,7 +208,6 @@ void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos* carros, U
 
     salida.close();
     styleOutput("bold","green","Datos del carro se modificaron exitosamente!");cout<<endl<<endl;
-    reiniciar = false;
 }
 
 //CASO 6 - BORRAR DATOS DE UN CLIENTE
@@ -240,7 +237,6 @@ void borrarDatosCliente(string encabezado_clientes, int numero_clientes, Usuario
 
     salida.close();
     styleOutput("bold","green","Datos del cliente borrado exitosamente!");cout<<endl<<endl;
-    reiniciar = false;
 }
 
 //CASO 7 - BORRAR DATOS DE UN CARRO.
@@ -269,7 +265,6 @@ void borrarDatosCarro(string encabezado_carros, int numero_carros, Autos* carros
 
     salida.close();
     styleOutput("bold","green","Datos del carro borrado exitosamente!");cout<<endl<<endl;
-    reiniciar = false;
 }
 
 
@@ -316,7 +311,6 @@ void gananciasDeUnCarro(int numero_clientes, int numero_carros,  Autos carros[],
             }         
         }
     }
-    reiniciar = false;
 }
 
 //CASO 9 - ESTADO GLOBAL DE LA CONSECIONARIA
@@ -348,6 +342,5 @@ void estadoGlobal(int numero_clientes, int numero_carros,  Autos* carros, Usuari
     {
         styleOutput("italic","red","[PERDIDA] -->");cout<<fixed<<setprecision(0);styleOutput("red", abs(valencia_gobal));styleOutput("red","$");cout<<endl<<endl;
         cout.unsetf(ios_base::floatfield);
-    }    
-    reiniciar = false;
+    }
 }
