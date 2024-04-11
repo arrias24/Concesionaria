@@ -4,7 +4,8 @@
 #include "../modelo/estilos.h"
 using namespace std;
 
-void buscarCliente(int& id_cliente, int numero_clientes, Usuarios clientes[], bool estado){
+void buscarCliente(int& id_cliente, int numero_clientes, Usuarios* clientes, bool estado)
+{
     int low = 0, high = numero_clientes - 1;
     id_cliente = binarySearch(low, high, clientes, id_cliente, estado);
 
@@ -14,7 +15,8 @@ void buscarCliente(int& id_cliente, int numero_clientes, Usuarios clientes[], bo
     }
 }
 
-void buscarCarro(int& id_carro, int numero_carros, Autos carros[], bool estado){
+void buscarCarro(int& id_carro, int numero_carros, Autos* carros, bool estado)
+{
     int low = 0, high = numero_carros - 1;
     id_carro = binarySearch(low, high, carros, id_carro, estado);
 
@@ -24,52 +26,34 @@ void buscarCarro(int& id_carro, int numero_carros, Autos carros[], bool estado){
     }
 }
 
-int buscarClientePorNombre(int numero_clientes, Usuarios clientes[], Usuarios agregar, bool& estado){
-    int x = 0;
-    for (int i = 0; i < numero_clientes; i++)
-    {
-        if (agregar.nombre == clientes[i].nombre)
-        {
-            for (int j = 0; j < numero_clientes; j++)
-            {
-                if (agregar.apellido == clientes[j].apellido)
-                {
-                    styleOutput("bold","red","[Error] El cliente ya se encuentra en la base de datos.");cout<<endl<<endl;
-                    estado = false;
-                    return 1;
-                }
-            }
+void buscarID(int numero_clientes, int numero_carros,  Autos* carros, Usuarios* clientes, Autos agregar, int& id1, int& id2, int id_vendido, int id_comprado, bool estado)
+{
+    id1 = -1;
+    id2 = -1;
+
+    for(int i = 0; i < numero_clientes; i++){
+        if(clientes[i].id == id_vendido){
+            id1 = i;
+            break;
         }
-        x += 1;
     }
-    return x;
-}
-
-void buscarID(int numero_clientes, int numero_carros,  Autos carros[], Usuarios clientes[], Autos agregar, int& id1, int& id2, int id_vendido, int id_comprado, bool estado){
-    if (agregar.id_vendido > numero_clientes) 
-    {
-        styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del vendedor seleccionado.");cout<<endl<<endl;
-        estado =false;
-        exit(0);
-    }else if (agregar.id_comprado > numero_clientes) {
-        styleOutput("bold", "red", "[ERROR] No se encontró el 'ID' del comprador seleccionado.");cout<<endl<<endl;
-        estado =false;
-        exit(0);
-    }
-
-    int low = 0, high = numero_clientes - 1;
-    id1 = binarySearch(low, high, clientes, id_vendido, estado);
 
     if(id1 == -1){
         styleOutput("bold","rojo","""[ERROR] No se encontró el 'ID' del vendedor seleccionado.");cout<<endl<<endl;
+        estado = false;
         exit(0);
     }
 
-    low = 0; high = numero_clientes - 1;
-    id2 = binarySearch(low, high, clientes, id_comprado, estado);
+    for(int i = 0; i < numero_clientes; i++){
+        if(clientes[i].id == id_comprado){
+            id2 = i;
+            break;
+        }
+    }
 
     if(id2 == -1){
         styleOutput("bold","rojo","[ERROR] No se encontró el 'ID' del comprador seleccionado.");cout<<endl<<endl;
+        estado = false;
         exit(0);
     }
 }

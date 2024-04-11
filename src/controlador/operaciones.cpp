@@ -122,22 +122,15 @@ void agregarDatosCliente(int numero_clientes, Usuarios* clientes, bool& reinicia
 
     //NUEVOS DATOS CLIENTE
 
-    agregar.id = (numero_clientes + 1);
+    agregar.id = (clientes[numero_clientes - 1].id + 1);
     styleOutput("bold","","Ingrese los datos del cliente:");cout<<endl<<endl;
     styleOutput("italic","yellow","Nombre:");cin>>agregar.nombre;
     styleOutput("italic","yellow","Apellido:");cin>>agregar.apellido;
     styleOutput("italic","yellow","E-mail:");cin>>agregar.email;
     styleOutput("italic","yellow","Edad:");cin>>agregar.edad;cout<<endl;
 
-    //DETECTOR DE CLIENTE REPETIDO
-
-    x = buscarClientePorNombre(numero_clientes, clientes, agregar, reiniciar);
-
-    if (x == numero_clientes)
-    {
-        clientes[numero_clientes].agregarDatosUsuarios(numero_clientes, clientes, agregar);
-        reiniciar = false;
-    } 
+    clientes[numero_clientes].agregarDatosUsuarios(numero_clientes, clientes, agregar);
+    reiniciar = false;
 }
 
 //CASO 4 - AGREGAR DATOS DE UN CARRO
@@ -145,7 +138,7 @@ void agregarDatosCliente(int numero_clientes, Usuarios* clientes, bool& reinicia
 void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos* carros, Usuarios* clientes, bool& reiniciar)
 {
     Autos agregar; int id_vendido, id_comprado;
-    agregar.id = (numero_carros + 1);
+    agregar.id = (carros[numero_carros - 1].id + 1);
             
     //NUEVOS DATOS CARRO
 
@@ -344,8 +337,8 @@ void estadoGlobal(int numero_clientes, int numero_carros,  Autos* carros, Usuari
     
     valencia_gobal = valencia_de_compra - valencia_de_venta;
 
-    styleOutput("bold","","Numero de clientes:");styleOutput("bold", numero_clientes);cout<<endl;
-    styleOutput("bold","","Numero de carros:");styleOutput("bold", numero_carros);cout<<endl<<endl;;
+    styleOutput("bold","","Numero de clientes:");styleOutput("bold", clientes[numero_clientes - 1].id);cout<<endl;
+    styleOutput("bold","","Numero de carros:");styleOutput("bold", carros[numero_carros - 1].id);cout<<endl<<endl;;
 
     if (valencia_gobal > 0)
     {

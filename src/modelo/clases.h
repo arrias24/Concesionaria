@@ -24,7 +24,7 @@ class Usuarios {
             cout<<"- ";styleOutput("Bold","","Edad:");cout<<edad<<endl;
         }
 
-        void agregarDatosUsuarios(int numero_clientes, Usuarios clientes[], Usuarios agregar)
+        void agregarDatosUsuarios(int numero_clientes, Usuarios* clientes, Usuarios agregar)
         {
             //ARCHIVO DE SALIDA
 
@@ -73,7 +73,7 @@ class Autos{
             cout<<"- ";styleOutput("Bold","","Precio de venta:");cout<<precio_comprado<<endl;
         }
 
-        void agregarDatosAutos(int numero_carros, Autos carros[], Autos agregar)
+        void agregarDatosAutos(int numero_carros, Autos* carros, Autos agregar)
         {
             //ARCHIVO DE SALIDA
 
