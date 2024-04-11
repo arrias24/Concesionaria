@@ -111,7 +111,7 @@ void mostrarHistorialCarro(int numero_clientes, int numero_carros, Usuarios* cli
 }
 //CASO 3 - AGREGAR DATOS DE UN CLIENTE
 
-void agregarDatosCliente(int numero_clientes, Usuarios* clientes, bool& reiniciar, int& x)
+void agregarDatosCliente(int numero_clientes, Usuarios* clientes, bool& reiniciar)
 {
     //VARIABLES A UTILIZAR
 
@@ -119,7 +119,7 @@ void agregarDatosCliente(int numero_clientes, Usuarios* clientes, bool& reinicia
 
     //NUEVOS DATOS CLIENTE
 
-    agregar.id = (clientes[numero_clientes - 1].id + 1 + x);
+    agregar.id = (clientes[numero_clientes - 1].id + 1);
     styleOutput("bold","","Ingrese los datos del cliente:");cout<<endl<<endl;
     styleOutput("italic","yellow","Nombre:");cin>>agregar.nombre;
     styleOutput("italic","yellow","Apellido:");cin>>agregar.apellido;
@@ -127,15 +127,14 @@ void agregarDatosCliente(int numero_clientes, Usuarios* clientes, bool& reinicia
     styleOutput("italic","yellow","Edad:");cin>>agregar.edad;cout<<endl;
 
     clientes[numero_clientes].agregarDatosUsuarios(numero_clientes, clientes, agregar);
-    x += 1;
 }
 
 //CASO 4 - AGREGAR DATOS DE UN CARRO
 
-void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos* carros, Usuarios* clientes, bool& reiniciar, int& x)
+void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos* carros, Usuarios* clientes, bool& reiniciar)
 {
     Autos agregar; int id_vendido, id_comprado; 
-    agregar.id = (carros[numero_carros - 1].id + 1 + x);
+    agregar.id = (carros[numero_carros - 1].id + 1);
             
     //NUEVOS DATOS CARRO
 
@@ -157,8 +156,6 @@ void agregarDatosCarro(int numero_clientes, int numero_carros,  Autos* carros, U
     if (reiniciar == true)
     {
         carros[numero_carros + 1].agregarDatosAutos(numero_carros, carros, agregar);
-        x += 1;
-
     }
 }
 

@@ -7,6 +7,19 @@
 #include "../modelo/manipularDatos.h"
 using namespace std;
 
+int leerCantidad(ifstream& archivo){
+    string encabezado;
+    getline(archivo, encabezado, '\n');
+
+    string linea; int valor = 0;
+    while (getline(archivo,linea, '\n'))
+    {
+        valor++;
+    }
+    archivo.close();
+    return valor;
+}
+
 void guardarDatosClientes(ifstream& archivo_clientes, string& encabezado_clientes, Usuarios*& clientes,  int& numero_clientes, int& capacidad_clientes)
 {
     getline(archivo_clientes, encabezado_clientes, '\n');

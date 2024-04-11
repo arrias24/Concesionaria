@@ -23,14 +23,20 @@ using namespace std;
 
 int main()
 {
+    bool reiniciar = true;
+    while( reiniciar == true)
+    {
     //CREAMOS VARIABLE DE ARCHIVOS, ABRIMOS ARCHIVOS Y LEEMOS
 
     ifstream archivo_clientes, archivo_carros;
     abrirArchivoClientes(archivo_clientes, "../assets/clients.csv"); abrirArchivoCarros(archivo_carros, "../assets/cars.csv");
 
-    //CREAMOS VARIABLES, GUARDAMOS DATOS DE CLIENTES Y CARROS EN OBJETOS
+    //CREAMOS VARIABLES, CONTAMOS CLIENTES Y USUARIOS, GUARDAMOS DATOS DE CLIENTES Y CARROS EN OBJETOS
     
-    int capacidad_clientes = 100, capacidad_carros = 1000;
+    int capacidad_clientes = leerCantidad(archivo_clientes); int capacidad_carros = leerCantidad(archivo_carros);
+    abrirArchivoClientes(archivo_clientes, "../assets/clients.csv"); abrirArchivoCarros(archivo_carros, "../assets/cars.csv");
+    
+
     Usuarios* clientes = new Usuarios[capacidad_clientes];
     Autos* carros = new Autos[capacidad_carros];
     int numero_clientes = 0, numero_carros = 0;
@@ -41,11 +47,7 @@ int main()
 
     //OPERACIONES 
 
-    bool reiniciar = true;
-    int x = 0;
-    int y = 0;
-    while( reiniciar == true)
-    {
+
         //LLAMAMOS A LA FUNCION
         
         int operacion = mostrarMenu(operacion);
@@ -75,7 +77,7 @@ int main()
 
                 //LLAMAMOS A LA FUNCION
 
-                agregarDatosCliente(numero_clientes, clientes, reiniciar, x);
+                agregarDatosCliente(numero_clientes, clientes, reiniciar);
                 bucle(reiniciar);
 
                 //FIN
@@ -87,7 +89,7 @@ int main()
 
                 //LLAMAMOS A LA FUNCION
 
-                agregarDatosCarro(numero_clientes, numero_carros,  carros, clientes, reiniciar, y);
+                agregarDatosCarro(numero_clientes, numero_carros,  carros, clientes, reiniciar);
                 bucle(reiniciar);
 
                 //FIN

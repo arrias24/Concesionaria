@@ -48,6 +48,7 @@ id;first_name;last_name;email;age
 47;Plymouth;Breeze;2000;53;26;26191;8038
 48;Infiniti;FX;2010;34;65;23782;1463
 49;Acura;RL;1997;16;66;9297;977
+50;Hyundai;Genesis;2012;60;66;20449;6978
 51;GMC;Canyon;2010;46;63;18395;2820
 52;Honda;FCX Clarity;2012;97;5;17522;4713
 53;Kia;Sportage;2012;87;19;12969;5688
@@ -997,5 +998,5 @@ id;first_name;last_name;email;age
 997;Ford;GT;2006;98;85;10960;6967
 998;Dodge;Daytona;1984;53;90;23494;6996
 999;Buick;Riviera;1986;70;7;29270;1168
-1000;Ford;Fiesta Max;2010;21;12;65432;65433
-1001;Ford;Fiesta Movie;2012;76;45;12343;54321
+1000;Mitsubishi;Truck;1991;83;91;23170;3700
+1001;Toco;Ron;2002;102;101;5000;6000
